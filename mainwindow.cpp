@@ -27,15 +27,6 @@ MainWindow::MainWindow(QWidget *parent)
     // Initialize frame count
     frameCount = 0;
 
-    // Add a ball to the scene
-    // ball = new QGraphicsEllipseItem(0, 0, 3, 3); // Ball size of 3x3
-    // ball->setBrush(Qt::red); // Set color
-    // scene->addItem(ball);
-
-    // Set initial movement direction
-    // dx = 5;
-    // dy = 5;
-
     //Setup a timer to move the ball
     ballTimer = new QTimer(this);
     connect(ballTimer, SIGNAL(timeout()), scene, SLOT(advance()));
@@ -125,7 +116,7 @@ void MainWindow::on_addBall_clicked()
     angle = ui->directionInput->text().toDouble();
 
     for (int i = 0; i < numBalls; ++i) {
-        Ball *ball = new Ball(startPosX, startPosY, angle, speed);
+        Ball *ball = new Ball(startPosX, startPosY, speed, angle);
         scene->addItem(ball);
     }
     // clearing of input fields

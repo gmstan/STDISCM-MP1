@@ -1,12 +1,12 @@
 #include "ball.h"
 #include<QDebug>
 
-Ball::Ball(qreal startPosX, qreal startPosY, qreal sp, qreal a)
+Ball::Ball(qreal startPosX, qreal startPosY, qreal spd, qreal direction)
 {
     startingPosX = startPosX;
     startingPosY = startPosY;
-    speed = sp;
-    angle = a;
+    speed = spd;
+    angle = direction;
 
     // random start position to be removed
     // startingPosX = QRandomGenerator::global()->bounded(100);
@@ -40,13 +40,13 @@ void Ball::advance(int step)
 
     qreal dx, dy;
 
-    if (angle == 0) {
-        dx = speed;
-        dy = 0;
-    } else {
+    // if (angle == 0) {
+    //     dx = speed;
+    //     dy = 0;
+    // } else {
         dx = speed*qCos(qDegreesToRadians(angle));
         dy = speed*qSin(qDegreesToRadians(angle));
-    }
+    // }
 
     setPos(mapToParent(dx, dy));
 }
