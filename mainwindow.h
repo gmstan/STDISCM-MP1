@@ -25,6 +25,7 @@ private slots:
     void updateFPS();
     //void moveBall(); // Added slot for moving the ball
     void on_addBall_clicked();
+    void on_addWall_clicked();
 
 protected:
     void paintEvent(QPaintEvent *event) override;

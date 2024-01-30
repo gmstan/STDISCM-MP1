@@ -36,16 +36,17 @@ void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 
 void Ball::advance(int step)
 {
-    qreal dx = speed*qCos(qDegreesToRadians(angle));
-    qreal dy = speed*qSin(qDegreesToRadians(angle));
-    qDebug() << dy;
-
-
-    // include angles
-
     if (!step) return;
 
-    QPointF location = this->pos();
+    qreal dx, dy;
+
+    if (angle == 0) {
+        dx = speed;
+        dy = 0;
+    } else {
+        dx = speed*qCos(qDegreesToRadians(angle));
+        dy = speed*qSin(qDegreesToRadians(angle));
+    }
 
     setPos(mapToParent(dx, dy));
 }

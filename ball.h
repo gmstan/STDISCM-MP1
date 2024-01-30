@@ -15,7 +15,7 @@ public:
     QPainterPath shape() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;
-protected:
+protected slots:
     void advance(int step) override;
 
 private:

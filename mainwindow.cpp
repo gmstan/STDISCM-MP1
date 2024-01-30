@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "ball.h"
 #include "ball.cpp"
+#include "wall.h"
+#include "wall.cpp"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -56,6 +58,16 @@ MainWindow::MainWindow(QWidget *parent)
     // Disable scrollbars
     ui->field->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->field->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    // creating walls on the borders
+    Wall *bottomwall = new Wall(0, 0, 1280, 0);
+    Wall *topwall = new Wall(0, 720, 1280, 720);
+    Wall *leftwall = new Wall(0, 0, 0, 720);
+    Wall *rightwall = new Wall(1280, 0, 1280, 720);
+    scene->addItem(topwall);
+    scene->addItem(bottomwall);
+    scene->addItem(leftwall);
+    scene->addItem(rightwall);
 }
 
 MainWindow::~MainWindow()
@@ -123,5 +135,23 @@ void MainWindow::on_addBall_clicked()
     ui->numBalls->setText("");
     ui->velocityInput->setText("");
     ui->directionInput->setText("");
+}
+
+int xStart, xEnd, yStart, yEnd;
+
+void MainWindow::on_addWall_clicked()
+{
+    xStart = ui->wallXStart->text().toInt();
+    yStart = ui->wallYStart->text().toInt();
+    xEnd = ui->wallXEnd->text().toInt();
+    yEnd = ui->wallYEnd->text().toInt();
+
+    Wall *wall = new Wall(xStart, yStart, xEnd, yEnd);
+    scene->addItem(wall);
+
+    ui->wallXStart->setText("");
+    ui->wallYStart->setText("");
+    ui->wallXEnd->setText("");
+    ui->wallYEnd->setText("");
 }
 
