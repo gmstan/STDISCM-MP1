@@ -6,6 +6,7 @@
 #include <QGraphicsScene>
 #include <QRandomGenerator>
 #include <QtMath>
+#include <wall.h>
 
 class Ball : public QGraphicsItem
 {
@@ -17,13 +18,15 @@ public:
                QWidget *widget) override;
 protected slots:
     void advance(int step) override;
+    qreal checkCollision();
+    qreal calculateWallAngle(Wall *wall);
+    qreal DoCollision(qreal angle);
 
 private:
     qreal startingPosX = 0;
     qreal startingPosY = 0;
     qreal angle = 0;
     qreal speed = 0;
-    void DoCollision();
 };
 
 #endif // BALL_H
