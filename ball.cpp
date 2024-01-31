@@ -42,7 +42,7 @@ void Ball::advance(int step)
 
     qreal dx, dy;
 
-    qreal angle = checkCollision();
+    checkCollision();
 
     dx = speed*qCos(qDegreesToRadians(angle));
     dy = speed*qSin(qDegreesToRadians(angle));
@@ -50,7 +50,7 @@ void Ball::advance(int step)
     setPos(mapToParent(dx, dy));
 }
 
-qreal Ball::checkCollision()
+void Ball::checkCollision()
 {
     QList<QGraphicsItem*> colliding_items = collidingItems();
     for (QGraphicsItem* item : colliding_items) {
@@ -58,29 +58,22 @@ qreal Ball::checkCollision()
         if (typeid(*item) == typeid(Wall)) {
             qDebug() << "Hit";
             qreal wallAngle = calculateWallAngle(wall);
-            qreal newAngle = DoCollision(wallAngle);
-            return newAngle; // Assume one collision at a time for simplicity
+            DoCollision(wallAngle);
+            return; // Assume one collision at a time for simplicity
         }
     }
 }
 
 qreal Ball::calculateWallAngle(Wall* wall)
 {
-    // Calculate the angle of the wall based on its position
-    qreal wallX = wall->x();
-    qreal wallY = wall->y();
-
-    qDebug() << wallX;
-    qDebug() << wallY;
-
-    qreal ballX = x();
-    qreal ballY = y();
-
-    qDebug() << ballX;
-    qDebug() << ballY;
+    // Retrieve the line representing the wall
+    QLineF wallLine = wall->line();
 
     // Calculate the angle in degrees
-    qreal angle = qRadiansToDegrees(qAtan2(wallY - ballY, wallX - ballX));
+    qreal angle = qRadiansToDegrees(qAtan2(wallLine.dy(), wallLine.dx()));
+
+    // Calculate the angle in degrees
+    //qreal angle = qRadiansToDegrees(qAtan2(wallY - ballY, wallX - ballX));
 
     qDebug() << angle;
     // Ensure the angle is positive and in the range [0, 360)
@@ -89,17 +82,20 @@ qreal Ball::calculateWallAngle(Wall* wall)
     return angle;
 }
 
-qreal Ball::DoCollision(qreal wallAngle)
+void Ball::DoCollision(qreal wallAngle)
 {
     qreal reflectionAngle = 2 * wallAngle - angle;
 
     // Adjust the ball's angle to the new reflection angle
     angle = reflectionAngle;
 
+    qDebug() << angle;
     // Move the ball slightly away from the wall to avoid repeated collisions
-    // qreal epsilon = 1.0;
-    // setPos(mapToParent(epsilon * qCos(qDegreesToRadians(reflectionAngle)), epsilon * qSin(qDegreesToRadians(reflectionAngle))));
-    return angle;
+    qreal epsilon = 1.0;
+    qreal reflectionX = x() + epsilon * qCos(qDegreesToRadians(reflectionAngle));
+    qreal reflectionY = y() + epsilon * qSin(qDegreesToRadians(reflectionAngle));
+
+    setPos(reflectionX, reflectionY);
 }
 
 QPainterPath Ball::shape() const

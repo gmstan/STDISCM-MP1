@@ -18,9 +18,9 @@ public:
                QWidget *widget) override;
 protected slots:
     void advance(int step) override;
-    qreal checkCollision();
+    void checkCollision();
     qreal calculateWallAngle(Wall *wall);
-    qreal DoCollision(qreal angle);
+    void DoCollision(qreal angle);
 
 private:
     qreal startingPosX = 0;
