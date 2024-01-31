@@ -20,7 +20,7 @@ protected slots:
     void advance(int step) override;
     void checkCollision();
     qreal calculateWallAngle(Wall *wall);
-    void DoCollision(qreal angle);
+    void DoCollision(const QList<QLineF>& walls);
 
 private:
     qreal startingPosX = 0;
