@@ -29,162 +29,26 @@
    <widget class="QGroupBox" name="addonConfig">
     <property name="geometry">
      <rect>
-      <x>1330</x>
-      <y>60</y>
-      <width>281</width>
-      <height>581</height>
+      <x>1310</x>
+      <y>30</y>
+      <width>331</width>
+      <height>741</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <bold>false</bold>
+     </font>
     </property>
     <property name="title">
      <string>Add-On Configuration</string>
     </property>
-    <widget class="QGroupBox" name="ballConfig">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>40</y>
-       <width>241</width>
-       <height>261</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Ball Configuration</string>
-     </property>
-     <widget class="QLabel" name="velocity">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>100</y>
-        <width>71</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Ball Velocity</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="direction">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>130</y>
-        <width>71</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Ball Direction</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="velocityInput">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>100</y>
-        <width>81</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="directionInput">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>130</y>
-        <width>81</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="addBall">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>220</y>
-        <width>80</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add Ball</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="locationX">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>91</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Ball Location (X)</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="locationY">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>70</y>
-        <width>91</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Ball Location (Y)</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="xInput">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>40</y>
-        <width>81</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="yInput">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>70</y>
-        <width>81</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>180</y>
-        <width>91</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Number of Balls</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="numBalls">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>180</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
     <widget class="QGroupBox" name="wallConfig">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>320</y>
-       <width>241</width>
+       <x>40</x>
+       <y>480</y>
+       <width>251</width>
        <height>241</height>
       </rect>
      </property>
@@ -194,11 +58,16 @@
      <widget class="QLabel" name="x1Location">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>40</y>
         <width>111</width>
         <height>16</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string>Wall Location 1 (X1)</string>
@@ -207,7 +76,7 @@
      <widget class="QLineEdit" name="wallXStart">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>150</x>
         <y>40</y>
         <width>81</width>
         <height>20</height>
@@ -223,6 +92,11 @@
         <height>24</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
        <string>Add Wall</string>
       </property>
@@ -230,20 +104,25 @@
      <widget class="QLabel" name="y1Location">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>70</y>
         <width>111</width>
         <height>16</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
-       <string>Wall Location1  (Y1)</string>
+       <string>Wall Location 1 (Y1)</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="wallYStart">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>150</x>
         <y>70</y>
         <width>81</width>
         <height>20</height>
@@ -253,11 +132,16 @@
      <widget class="QLabel" name="x2Location">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>110</y>
         <width>111</width>
         <height>16</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string>Wall Location 2 (X2)</string>
@@ -266,11 +150,16 @@
      <widget class="QLabel" name="y2Location">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>150</y>
+        <x>20</x>
+        <y>140</y>
         <width>111</width>
         <height>16</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string>Wall Location 2 (Y2)</string>
@@ -279,7 +168,7 @@
      <widget class="QLineEdit" name="wallXEnd">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>150</x>
         <y>110</y>
         <width>81</width>
         <height>20</height>
@@ -289,12 +178,742 @@
      <widget class="QLineEdit" name="wallYEnd">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>150</y>
+        <x>150</x>
+        <y>140</y>
         <width>81</width>
         <height>20</height>
        </rect>
       </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="ballConfig">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>311</width>
+       <height>421</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Ball Configuration</string>
+     </property>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>291</width>
+        <height>371</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="SingleBall">
+       <attribute name="title">
+        <string>SingleBall</string>
+       </attribute>
+       <widget class="QLineEdit" name="yInput">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>70</y>
+          <width>81</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="locationX">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>40</y>
+          <width>91</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Ball Location (X)</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="velocity">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>110</y>
+          <width>71</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Ball Velocity</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="locationY">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>70</y>
+          <width>91</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Ball Location (Y)</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="velocityInput">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>110</y>
+          <width>81</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="xInput">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>40</y>
+          <width>81</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="direction">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>140</y>
+          <width>81</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Ball Direction</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="directionInput">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>140</y>
+          <width>81</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="addBall">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>300</y>
+          <width>80</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Add Ball</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="MultiBall1">
+       <attribute name="title">
+        <string>Position-Distributed Balls</string>
+       </attribute>
+       <widget class="QLabel" name="velocity1">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>220</y>
+          <width>71</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Ball Velocity</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="velocityInput1">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>220</y>
+          <width>81</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="direction1">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>250</y>
+          <width>81</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Ball Direction</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="addBall1">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>300</y>
+          <width>80</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Add Ball</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="directionInput1">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>250</y>
+          <width>81</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="X_Range">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>10</y>
+          <width>251</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>X Range</string>
+        </property>
+        <widget class="QLineEdit" name="startXInput">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>30</y>
+           <width>81</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="endXInput">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>60</y>
+           <width>81</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="startX">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>111</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Initial Ball Location </string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="endX">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>60</y>
+           <width>101</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Final  Ball Location </string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="Y_Range">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>110</y>
+          <width>251</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Y Range</string>
+        </property>
+        <widget class="QLineEdit" name="startYInput">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>30</y>
+           <width>81</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="endYInput">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>60</y>
+           <width>81</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="startY">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>111</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Initial Ball Location </string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="endY">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>60</y>
+           <width>111</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Final  Ball Location </string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="MultiBall2">
+       <attribute name="title">
+        <string>Direction-Distributed Balls</string>
+       </attribute>
+       <widget class="QGroupBox" name="direction_Range">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>20</y>
+          <width>251</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Direction Range</string>
+        </property>
+        <widget class="QLineEdit" name="initialDirectionInput">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>30</y>
+           <width>81</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="finalDirectionInput">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>60</y>
+           <width>81</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="initialDirection">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>111</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Initial Direction</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="finalDirection">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>60</y>
+           <width>111</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Final  Direction</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QLabel" name="locationY2">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>160</y>
+          <width>91</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Ball Location (Y)</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="locationX2">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>130</y>
+          <width>91</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Ball Location (X)</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="xInput2">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>130</y>
+          <width>81</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="yInput2">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>160</y>
+          <width>81</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="velocity2">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>190</y>
+          <width>71</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Ball Velocity</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="velocityInput2">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>190</y>
+          <width>81</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="addBall2">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>300</y>
+          <width>80</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Add Ball</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="MultiBall3">
+       <attribute name="title">
+        <string>Velocity Distributed Balls</string>
+       </attribute>
+       <widget class="QLineEdit" name="yInput3">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>160</y>
+          <width>81</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="locationX3">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>130</y>
+          <width>91</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Ball Location (X)</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="locationY3">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>160</y>
+          <width>91</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Ball Location (Y)</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="xInput3">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>130</y>
+          <width>81</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="direction3">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>190</y>
+          <width>81</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Ball Direction</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="directionInput3">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>190</y>
+          <width>81</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="velocityRange">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>20</y>
+          <width>251</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Velocity Range</string>
+        </property>
+        <widget class="QLineEdit" name="initialVelocityInput">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>30</y>
+           <width>81</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="finalVelocityInput">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>60</y>
+           <width>81</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="initialVelocity">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>101</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Initial Velocity</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="finalVelocity">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>60</y>
+           <width>101</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Final  Velocity</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QPushButton" name="addBall3">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>300</y>
+          <width>80</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Add Ball</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </widget>
    </widget>

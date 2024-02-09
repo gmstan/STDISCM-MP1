@@ -111,19 +111,19 @@ void MainWindow::on_addBall_clicked()
     // variables, starting position X and Y, number of balls, ball speed, ball direction
     startPosX = ui->xInput->text().toInt();
     startPosY = ui->yInput->text().toInt();
-    numBalls = ui->numBalls->text().toInt();
+    // numBalls = ui->numBalls->text().toInt();
     speed = ui->velocityInput->text().toDouble();
     angle = ui->directionInput->text().toDouble();
 
-    for (int i = 0; i < numBalls; ++i) {
+    // for (int i = 0; i < numBalls; ++i) {
         Ball *ball = new Ball(startPosX, startPosY, speed, angle);
         scene->addItem(ball);
-    }
+    // }
     // clearing of input fields
 
     ui->xInput->setText("");
     ui->yInput->setText("");
-    ui->numBalls->setText("");
+    // ui->numBalls->setText("");
     ui->velocityInput->setText("");
     ui->directionInput->setText("");
 }
