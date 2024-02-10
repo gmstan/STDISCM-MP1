@@ -83,35 +83,15 @@ void MainWindow::paintEvent(QPaintEvent *event)
     // Your painting code goes here
 }
 
-// void MainWindow::moveBall()
-// {
-//     // Get current position of the ball
-//     ball->advance();
-
-//     // Check collision with walls
-//     QPointF pos = ball->pos();
-
-//     // Check collision with walls
-//     if (pos.x() <= 0 || pos.x() >= ui->field->width() - 3) { // 3 is the width of the ball
-//         dx = -dx; // Reverse direction in x-axis
-//     }
-//     if (pos.y() <= 0 || pos.y() >= ui->field->height() - 3) { // 3 is the height of the ball
-//         dy = -dy; // Reverse direction in y-axis
-//     }
-
-//     // Update ball position
-//     ball->setPos(pos);
-// }
-
 int numBalls;
-qreal speed, angle, startPosX, startPosY;
+qreal speed, angle, startPosX, startPosY, endPosX, endPosY, finalAngle, finalSpeed;
 
+//Adding a Single Ball
 void MainWindow::on_addBall_clicked()
 {
     // variables, starting position X and Y, number of balls, ball speed, ball direction
     startPosX = ui->xInput->text().toInt();
     startPosY = ui->yInput->text().toInt();
-    // numBalls = ui->numBalls->text().toInt();
     speed = ui->velocityInput->text().toDouble();
     angle = ui->directionInput->text().toDouble();
 
@@ -123,9 +103,88 @@ void MainWindow::on_addBall_clicked()
 
     ui->xInput->setText("");
     ui->yInput->setText("");
-    // ui->numBalls->setText("");
     ui->velocityInput->setText("");
     ui->directionInput->setText("");
+}
+
+//Adding Multiple Balls within a certain range of X and Y
+void MainWindow::on_addBall1_clicked()
+{
+    speed = ui->velocityInput1->text().toDouble();
+    angle = ui->directionInput1->text().toDouble();
+    startPosX = ui->startXInput->text().toInt();
+    endPosX = ui->endXInput->text().toInt();
+    startPosY = ui->startYInput->text().toInt();
+    endPosY = ui->endYInput->text().toInt();
+    numBalls = ui->numBallsInput1->text().toInt();
+
+    qreal deltaX = (endPosX - startPosX) / (numBalls + 1);
+    qreal deltaY = (endPosY - startPosY) / (numBalls + 1);
+
+    for (int i=0; i<numBalls;++i) {
+        qreal currPosX = startPosX + i * deltaX;
+        qreal currPosY = startPosY + i * deltaY;
+
+        Ball *ball = new Ball(currPosX, currPosY, speed, angle);
+        scene->addItem(ball);
+    }
+
+    ui->velocityInput1->setText("");
+    ui->directionInput1->setText("");
+    ui->startXInput->setText("");
+    ui->endXInput->setText("");
+    ui->startYInput->setText("");
+    ui->endYInput->setText("");
+    ui->numBallsInput1->setText("");
+}
+
+void MainWindow::on_addBall2_clicked()
+{
+    startPosX = ui->xInput2->text().toInt();
+    startPosY = ui->yInput2->text().toInt();
+    speed = ui->velocityInput2->text().toDouble();
+    angle = ui->initialDirectionInput->text().toDouble();
+    finalAngle = ui->finalDirectionInput->text().toDouble();
+    numBalls = ui->numBallsInput2->text().toInt();
+
+    qreal deltaAngle = (finalAngle - angle) / (numBalls + 1);
+
+    for (int i = 0; i < numBalls; ++i) {
+        qreal newAngle = deltaAngle + i * deltaAngle;
+        Ball *ball = new Ball(startPosX, startPosY, speed, newAngle);
+        scene->addItem(ball);
+    }
+
+    ui->xInput2->setText("");
+    ui->yInput2->setText("");
+    ui->velocityInput2->setText("");
+    ui->initialDirectionInput->setText("");
+    ui->finalDirectionInput->setText("");
+    ui->numBallsInput2->setText("");
+}
+
+void MainWindow::on_addBall3_clicked()
+{
+    startPosX = ui->xInput3->text().toInt();
+    startPosY = ui->yInput3->text().toInt();
+    speed = ui->initialVelocityInput->text().toDouble();
+    finalSpeed = ui->finalVelocityInput->text().toDouble();
+    angle = ui->directionInput3->text().toDouble();
+    numBalls = ui->numBallsInput3->text().toInt();
+
+    qreal deltaSpeed = (finalSpeed - speed) / (numBalls + 1);
+    for (int i = 0; i < numBalls; ++i) {
+        qreal newSpeed = speed + i * deltaSpeed;
+        Ball *ball = new Ball(startPosX, startPosY, newSpeed, angle);
+        scene->addItem(ball);
+    }
+
+    ui->xInput3->setText("");
+    ui->yInput3->setText("");
+    ui->initialVelocityInput->setText("");
+    ui->finalVelocityInput->setText("");
+    ui->directionInput3->setText("");
+    ui->numBallsInput3->setText("");
 }
 
 int xStart, xEnd, yStart, yEnd;
@@ -145,4 +204,9 @@ void MainWindow::on_addWall_clicked()
     ui->wallXEnd->setText("");
     ui->wallYEnd->setText("");
 }
+
+
+
+
+
 

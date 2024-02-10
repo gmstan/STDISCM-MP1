@@ -204,11 +204,11 @@
         <x>10</x>
         <y>30</y>
         <width>291</width>
-        <height>371</height>
+        <height>381</height>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="SingleBall">
        <attribute name="title">
@@ -330,7 +330,7 @@
         <property name="geometry">
          <rect>
           <x>100</x>
-          <y>300</y>
+          <y>310</y>
           <width>80</width>
           <height>24</height>
          </rect>
@@ -399,7 +399,7 @@
         <property name="geometry">
          <rect>
           <x>100</x>
-          <y>300</y>
+          <y>310</y>
           <width>80</width>
           <height>24</height>
          </rect>
@@ -560,6 +560,34 @@
           <string>Final  Ball Location </string>
          </property>
         </widget>
+       </widget>
+       <widget class="QLabel" name="numBalls1">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>280</y>
+          <width>101</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Number of Balls</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="numBallsInput1">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>280</y>
+          <width>81</width>
+          <height>20</height>
+         </rect>
+        </property>
        </widget>
       </widget>
       <widget class="QWidget" name="MultiBall2">
@@ -723,7 +751,7 @@
         <property name="geometry">
          <rect>
           <x>100</x>
-          <y>300</y>
+          <y>310</y>
           <width>80</width>
           <height>24</height>
          </rect>
@@ -735,6 +763,34 @@
         </property>
         <property name="text">
          <string>Add Ball</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="numBalls2">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>220</y>
+          <width>101</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Number of Balls</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="numBallsInput2">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>220</y>
+          <width>81</width>
+          <height>20</height>
+         </rect>
         </property>
        </widget>
       </widget>
@@ -899,7 +955,7 @@
         <property name="geometry">
          <rect>
           <x>100</x>
-          <y>300</y>
+          <y>310</y>
           <width>80</width>
           <height>24</height>
          </rect>
@@ -911,6 +967,34 @@
         </property>
         <property name="text">
          <string>Add Ball</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="numBalls3">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>220</y>
+          <width>101</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Number of Balls</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="numBallsInput3">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>220</y>
+          <width>81</width>
+          <height>20</height>
+         </rect>
         </property>
        </widget>
       </widget>
