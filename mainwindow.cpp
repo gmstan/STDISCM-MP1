@@ -1,9 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "ball.h"
-#include "ball.cpp"
 #include "wall.h"
-#include "wall.cpp"
+#include "threadmanager.h"
+
+#include <QThreadPool>
+#include <QThread>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -27,10 +29,10 @@ MainWindow::MainWindow(QWidget *parent)
     // Initialize frame count
     frameCount = 0;
 
-    //Setup a timer to move the ball
-    ballTimer = new QTimer(this);
-    connect(ballTimer, SIGNAL(timeout()), scene, SLOT(advance()));
-    ballTimer->start(20); // Move the ball every 20 milliseconds
+    // //Setup a timer to move the ball
+    // ballTimer = new QTimer(this);
+    // connect(ballTimer, SIGNAL(timeout()), scene, SLOT(advance()));
+    // ballTimer->start(20); // Move the ball every 20 milliseconds
 
     // Lock the size of the graphics view
     ui->field->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
@@ -59,6 +61,17 @@ MainWindow::MainWindow(QWidget *parent)
     scene->addItem(bottomwall);
     scene->addItem(leftwall);
     scene->addItem(rightwall);
+
+
+    threadManager = new ThreadManager(this);
+
+    // QThreadPool threadPool = new QThreadPool(this);
+    // threadPool.setMaxThreadCount(20);
+
+
+    // ballTimer = new QTimer(this);
+    // connect(ballTimer, SIGNAL(timeout()), scene, SLOT(advance()));
+    // ballTimer->start(20);
 }
 
 MainWindow::~MainWindow()
@@ -95,12 +108,27 @@ void MainWindow::on_addBall_clicked()
     speed = ui->velocityInput->text().toDouble();
     angle = ui->directionInput->text().toDouble();
 
-    // for (int i = 0; i < numBalls; ++i) {
-        Ball *ball = new Ball(startPosX, startPosY, speed, angle);
-        scene->addItem(ball);
-    // }
-    // clearing of input fields
+    Ball *ball = new Ball(startPosX, startPosY, speed, angle);
+    threadManager->connectBall(ball);
+    scene->addItem(ball);
 
+
+    // QThread *thread = new QThread();
+
+    // ball->moveToThread(thread);
+
+    // connect(thread, &QThread::started, ball, &Ball::advance);
+
+    // connect(Ball, &Ball::, threadManager, SLOT(connectBall(ball)));
+    qInfo() << "main: " << QThread::currentThread();
+
+    // threadManager->connectBall(ball);
+
+    // thread->start();
+
+
+
+    // clearing of input fields
     ui->xInput->setText("");
     ui->yInput->setText("");
     ui->velocityInput->setText("");

@@ -12,11 +12,13 @@ SOURCES += \
     ball.cpp \
     main.cpp \
     mainwindow.cpp \
+    threadmanager.cpp \
     wall.cpp
 
 HEADERS += \
     ball.h \
     mainwindow.h \
+    threadmanager.h \
     wall.h
 
 FORMS += \

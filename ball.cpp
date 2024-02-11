@@ -1,4 +1,5 @@
 #include "ball.h"
+#include "qthread.h"
 #include "wall.h"
 #include "cstdlib"
 #include <QDebug>
@@ -25,20 +26,13 @@ void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 {
     painter->setBrush(Qt::red);
     painter->drawEllipse(startingPosX, startingPosY, 10, 10);
-
-    qDebug() << scene();
-    // if (
-    //     painter->setBrush(Qt::green);
-    // }
-    // else {
-    //     painter->setBrush(Qt::red);
-
-    // }
 }
 
-void Ball::advance(int step)
+void Ball::moveBall(int step)
 {
     if (!step) return;
+
+    qInfo() << "miniThread: " << QThread::currentThread();
 
     qreal dx, dy;
 

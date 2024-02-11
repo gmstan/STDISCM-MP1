@@ -2,13 +2,13 @@
 #define BALL_H
 
 #include <QPainter>
-#include <QGraphicsItem>
+#include <QGraphicsObject>
 #include <QGraphicsScene>
 #include <QRandomGenerator>
 #include <QtMath>
 #include <wall.h>
 
-class Ball : public QGraphicsItem
+class Ball : public QGraphicsObject
 {
 public:
     Ball(qreal startPosX, qreal startPosY, qreal speed, qreal angle);
@@ -16,8 +16,16 @@ public:
     QPainterPath shape() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;
+
+    // void advance(int step) override;
+
+// signals:
+//     void
+
+public slots:
+    void moveBall(int step);
+
 protected slots:
-    void advance(int step) override;
     void checkCollision();
     qreal calculateWallAngle(Wall *wall);
     void DoCollision(const QList<QLineF>& walls);

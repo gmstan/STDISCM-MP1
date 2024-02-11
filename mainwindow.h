@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "threadmanager.h"
 #include <QMainWindow>
 #include <QLabel>
 #include <QTimer>
@@ -45,6 +46,7 @@ private:
     QGraphicsEllipseItem *ball;
     int frameCount;
     int dx, dy; // direction of movement for the ball
+    ThreadManager *threadManager;
 };
 
 #endif // MAINWINDOW_H
