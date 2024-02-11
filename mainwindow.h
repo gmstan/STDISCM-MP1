@@ -18,6 +18,9 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+signals:
+    void ballCreated(Ball *ball);
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();

@@ -64,6 +64,16 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     threadManager = new ThreadManager(this);
+    QThread *thread = new QThread(this);
+    threadManager->moveToThread(thread);
+    connect(thread, &QThread::started, threadManager, &ThreadManager::timerCall);
+    thread->start();
+    connect(this, &MainWindow::ballCreated, threadManager, &ThreadManager::connectBall);
+
+    QTimer *ballTimer = new QTimer(threadManager); // Pass threadManager as parent
+    connect(ballTimer, &QTimer::timeout, threadManager, &ThreadManager::timerCall);
+    ballTimer->start(20);
+
 
     // QThreadPool threadPool = new QThreadPool(this);
     // threadPool.setMaxThreadCount(20);
@@ -109,9 +119,9 @@ void MainWindow::on_addBall_clicked()
     angle = ui->directionInput->text().toDouble();
 
     Ball *ball = new Ball(startPosX, startPosY, speed, angle);
-    threadManager->connectBall(ball);
+    // threadManager->connectBall(ball);
     scene->addItem(ball);
-
+    emit ballCreated(ball);
 
     // QThread *thread = new QThread();
 
