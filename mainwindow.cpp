@@ -3,7 +3,7 @@
 #include "ball.h"
 #include "wall.h"
 #include "threadmanager.h"
-
+#include "gamescene.h"
 #include <QThreadPool>
 #include <QThread>
 
@@ -14,20 +14,21 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     // Create a scene for the graphics view
-    scene = new QGraphicsScene(this);
+    scene = new GameScene(this);
     ui->field->setScene(scene);
 
     // Create a label to display FPS
     fpsLabel = ui->fpsCounterLabel;
     fpsLabel->setText("FPS: 0");
 
+
     // Setup a timer to update FPS
     fpsTimer = new QTimer(this);
-    connect(fpsTimer, SIGNAL(timeout()), this, SLOT(updateFPS()));
+    connect(fpsTimer, SIGNAL(timeout()), this, SLOT(displayFPS()));
     fpsTimer->start(500); // Update every half-second
 
     // Initialize frame count
-    frameCount = 0;
+    //frameCount = 0;
 
     // //Setup a timer to move the ball
     // ballTimer = new QTimer(this);
@@ -74,7 +75,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ballTimer, &QTimer::timeout, threadManager, &ThreadManager::timerCall);
     ballTimer->start(20);
 
-
+    // Calculate FPS
+    fpsCountTimer = new QTimer(this);
+    connect(fpsCountTimer, &QTimer::timeout, scene, &GameScene::computeFPS);
+    fpsCountTimer->start(20);
     // QThreadPool threadPool = new QThreadPool(this);
     // threadPool.setMaxThreadCount(20);
 
@@ -89,14 +93,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::updateFPS()
+void MainWindow::displayFPS()
 {
-    // Calculate FPS
-    int frames = frameCount;
-    frameCount = 0;
-
-    // Update the FPS label
-    fpsLabel->setText("FPS: " + QString::number(frames));
+    double fps = scene->getFPS();
+    qDebug() << "FPS value:" << fps;
+    // Assuming fps is a double variable containing the FPS value
+    fpsLabel->setText(QString("FPS: ") + QString::number(fps, 'f', 1));
 }
 
 void MainWindow::paintEvent(QPaintEvent *event)

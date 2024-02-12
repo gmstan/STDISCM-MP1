@@ -7,6 +7,7 @@
 #include <QTimer>
 #include <QGraphicsScene>
 #include <QGraphicsEllipseItem>
+#include "gamescene.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -30,7 +31,7 @@ public slots:
 
 
 private slots:
-    void updateFPS();
+    void displayFPS();
     //void moveBall(); // Added slot for moving the ball
     void on_addBall_clicked();
     void on_addWall_clicked();
@@ -48,8 +49,9 @@ private:
     Ui::MainWindow *ui;
     QLabel *fpsLabel;
     QTimer *fpsTimer;
+    QTimer *fpsCountTimer;
     QTimer *ballTimer; // Timer for moving the ball
-    QGraphicsScene *scene;
+    GameScene *scene;
     QGraphicsEllipseItem *ball;
     int frameCount;
     int dx, dy; // direction of movement for the ball

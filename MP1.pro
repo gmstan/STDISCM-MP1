@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     ball.cpp \
+    gamescene.cpp \
     main.cpp \
     mainwindow.cpp \
     threadmanager.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     ball.h \
+    gamescene.h \
     mainwindow.h \
     threadmanager.h \
     wall.h

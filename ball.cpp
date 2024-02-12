@@ -42,10 +42,12 @@ void Ball::moveBall(int step)
     dy = speed*qSin(qDegreesToRadians(angle));
 
 
+
     qInfo() << "values" << startingPosX << startingPosY << dx << dy;
 
     startingPosX += dx;
     startingPosY += dy;
+    scene()->update(boundingRect());
     emit finish(this, startingPosX,startingPosY,dx,dy);
     // setPos(mapToParent(dx, dy));
 
