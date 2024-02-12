@@ -20,7 +20,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 signals:
-    void ballCreated(Ball *ball);
+    void ballCreated(QVector<Ball*> balls);
 
 public:
     MainWindow(QWidget *parent = nullptr);

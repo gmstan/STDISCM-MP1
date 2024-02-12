@@ -31,7 +31,7 @@ private:
     QTimer *ballTimer;
 
 public slots:
-    void connectBall(Ball *ball);
+    void connectBall(QVector<Ball*> balls);
     void timerCall();
 
 

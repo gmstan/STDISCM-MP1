@@ -27,14 +27,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(fpsTimer, SIGNAL(timeout()), this, SLOT(displayFPS()));
     fpsTimer->start(500); // Update every half-second
 
-    // Initialize frame count
-    //frameCount = 0;
-
-    // //Setup a timer to move the ball
-    // ballTimer = new QTimer(this);
-    // connect(ballTimer, SIGNAL(timeout()), scene, SLOT(advance()));
-    // ballTimer->start(20); // Move the ball every 20 milliseconds
-
     // Lock the size of the graphics view
     ui->field->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     ui->field->setFixedSize(1280, 720); // Set your desired size
@@ -65,10 +57,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     threadManager = new ThreadManager(this);
-    // QThread *thread = new QThread();
-    // threadManager->moveToThread(thread);
-    // connect(thread, &QThread::started, threadManager, &ThreadManager::timerCall);
-    // thread->start();
+
     connect(this, &MainWindow::ballCreated, threadManager, &ThreadManager::connectBall);
 
     QTimer *ballTimer = new QTimer(threadManager); // Pass threadManager as parent
@@ -79,13 +68,6 @@ MainWindow::MainWindow(QWidget *parent)
     fpsCountTimer = new QTimer(this);
     connect(fpsCountTimer, &QTimer::timeout, scene, &GameScene::computeFPS);
     fpsCountTimer->start(20);
-    // QThreadPool threadPool = new QThreadPool(this);
-    // threadPool.setMaxThreadCount(20);
-
-
-    // ballTimer = new QTimer(this);
-    // connect(ballTimer, SIGNAL(timeout()), scene, SLOT(advance()));
-    // ballTimer->start(20);
 }
 
 MainWindow::~MainWindow()
@@ -133,23 +115,11 @@ void MainWindow::on_addBall_clicked()
     scene->addItem(ball);
     connect(threadManager, &ThreadManager::ballPositionChanged, this, &MainWindow::updateBallPosition);
 
-    emit ballCreated(ball);
+    QVector<Ball*> balls;
+    balls.append(ball);
+    emit ballCreated(balls);
 
-
-    // QThread *thread = new QThread();
-
-    // ball->moveToThread(thread);
-
-    // connect(thread, &QThread::started, ball, &Ball::advance);
-
-    // connect(Ball, &Ball::, threadManager, SLOT(connectBall(ball)));
     qInfo() << "main: " << QThread::currentThread();
-
-    // threadManager->connectBall(ball);
-
-    // thread->start();
-
-
 
     // clearing of input fields
     ui->xInput->setText("");
@@ -172,13 +142,17 @@ void MainWindow::on_addBall1_clicked()
     qreal deltaX = (endPosX - startPosX) / (numBalls + 1);
     qreal deltaY = (endPosY - startPosY) / (numBalls + 1);
 
+    QVector<Ball*> balls;
+
     for (int i=0; i<numBalls;++i) {
         qreal currPosX = startPosX + i * deltaX;
         qreal currPosY = startPosY + i * deltaY;
 
         Ball *ball = new Ball(currPosX, currPosY, speed, angle);
         scene->addItem(ball);
+        balls.append(ball);
     }
+    emit ballCreated(balls);
 
     ui->velocityInput1->setText("");
     ui->directionInput1->setText("");
@@ -200,11 +174,14 @@ void MainWindow::on_addBall2_clicked()
 
     qreal deltaAngle = (finalAngle - angle) / (numBalls + 1);
 
+    QVector<Ball*> balls;
     for (int i = 0; i < numBalls; ++i) {
         qreal newAngle = deltaAngle + i * deltaAngle;
         Ball *ball = new Ball(startPosX, startPosY, speed, newAngle);
         scene->addItem(ball);
+        balls.append(ball);
     }
+    emit ballCreated(balls);
 
     ui->xInput2->setText("");
     ui->yInput2->setText("");
@@ -224,11 +201,14 @@ void MainWindow::on_addBall3_clicked()
     numBalls = ui->numBallsInput3->text().toInt();
 
     qreal deltaSpeed = (finalSpeed - speed) / (numBalls + 1);
+    QVector<Ball*> balls;
     for (int i = 0; i < numBalls; ++i) {
         qreal newSpeed = speed + i * deltaSpeed;
         Ball *ball = new Ball(startPosX, startPosY, newSpeed, angle);
         scene->addItem(ball);
+        balls.append(ball);
     }
+    emit ballCreated(balls);
 
     ui->xInput3->setText("");
     ui->yInput3->setText("");

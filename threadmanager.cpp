@@ -7,27 +7,23 @@ ThreadManager::ThreadManager(QObject *parent)
 {
     currSize = 0;
     maxSize = 4;
-    // currThread = new QThread();
-    // QVector<Ball*> allBalls;
-
-    // QTimer *ballTimer = new QTimer();
-    // connect(ballTimer, &QTimer::timeout, this, &ThreadManager::timerCall);
-    // ballTimer->start(20);
 }
 
 
-void ThreadManager::connectBall(Ball *ball){
+void ThreadManager::connectBall(QVector<Ball*> balls){
     qInfo() << "conecctBALL: " << QThread::currentThread();
-    allBalls.append(ball);
 
-    // Ball *test = new Ball(ball->startingPosX,ball->startingPosY,ball->speed,ball->angle);
-    QThread *thread = new QThread();
-    ball->moveToThread(thread);
+    for (int i=0;i<balls.size();i++){
+        QThread *thread = new QThread();
+        balls[i]->moveToThread(thread);
+        thread->start();
+        connect(this, &ThreadManager::advanceBalls, balls[i], &Ball::moveBall);
+        connect(balls[i], &Ball::finish, this, &ThreadManager::updatePos);
+    }
 
-    thread->start();
 
-    connect(this, &ThreadManager::advanceBalls, ball, &Ball::moveBall);
-    connect(ball, &Ball::finish, this, &ThreadManager::updatePos);
+    // connect(this, &ThreadManager::advanceBalls, ball, &Ball::moveBall);
+    // connect(ball, &Ball::finish, this, &ThreadManager::updatePos);
     // Start the thread
 
     ++currSize;
