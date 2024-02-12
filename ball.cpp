@@ -41,7 +41,11 @@ void Ball::moveBall(int step)
     dx = speed*qCos(qDegreesToRadians(angle));
     dy = speed*qSin(qDegreesToRadians(angle));
 
-    setPos(mapToParent(dx, dy));
+
+    qInfo() << "values" << startingPosX << startingPosY << dx << dy;
+
+    emit finish(this, startingPosX,startingPosY,dx,dy);
+    // setPos(mapToParent(dx, dy));
 }
 
 void Ball::checkCollision()

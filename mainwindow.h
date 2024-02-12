@@ -25,6 +25,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+    void updateBallPosition(Ball *ball, int x, int y, qreal dx, qreal dy);
+
+
 private slots:
     void updateFPS();
     //void moveBall(); // Added slot for moving the ball

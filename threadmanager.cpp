@@ -17,18 +17,35 @@ ThreadManager::ThreadManager(QObject *parent)
 
 
 void ThreadManager::connectBall(Ball *ball){
-    qInfo() << ball;
     qInfo() << "conecctBALL: " << QThread::currentThread();
+    allBalls.append(ball);
 
+    // Ball *test = new Ball(ball->startingPosX,ball->startingPosY,ball->speed,ball->angle);
+    QThread *thread = new QThread();
+    ball->moveToThread(thread);
+
+    thread->start();
+
+    // allNewBalls.append(test);
     // if (!currThread) {
     // QThread *ballThread = new QThread();
-    ball->moveToThread(this->thread());
+    // ball->moveToThread(this->thread());
     // }
     connect(this, &ThreadManager::advanceBalls, ball, &Ball::moveBall);
+    connect(ball, &Ball::finish, this, &ThreadManager::updatePos);
     // Start the thread
 
-    allBalls.append(ball);
     ++currSize;
+}
+
+void ThreadManager::updatePos(Ball *ball, int x,int y,qreal dx,qreal dy){
+    // int j=0;
+    // for(int i=0;i<allBalls.size();i++){
+    //     allBalls.
+    // }
+    emit ballPositionChanged(ball, x,y, dx, dy);
+    // newBall->setPos(x+dx,y+dy);
+
 }
 
 void ThreadManager::timerCall(){

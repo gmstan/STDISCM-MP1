@@ -64,10 +64,10 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     threadManager = new ThreadManager(this);
-    QThread *thread = new QThread(this);
-    threadManager->moveToThread(thread);
-    connect(thread, &QThread::started, threadManager, &ThreadManager::timerCall);
-    thread->start();
+    // QThread *thread = new QThread();
+    // threadManager->moveToThread(thread);
+    // connect(thread, &QThread::started, threadManager, &ThreadManager::timerCall);
+    // thread->start();
     connect(this, &MainWindow::ballCreated, threadManager, &ThreadManager::connectBall);
 
     QTimer *ballTimer = new QTimer(threadManager); // Pass threadManager as parent
@@ -106,6 +106,14 @@ void MainWindow::paintEvent(QPaintEvent *event)
     // Your painting code goes here
 }
 
+void MainWindow::updateBallPosition(Ball *ball, int x, int y, qreal dx, qreal dy) {
+    // Update the position of the ball in the scene
+
+    qInfo() << "mainValues" << x << y << dx << dy;
+    ball->setPos(x + dx, y + dy);
+}
+
+
 int numBalls;
 qreal speed, angle, startPosX, startPosY, endPosX, endPosY, finalAngle, finalSpeed;
 
@@ -121,6 +129,8 @@ void MainWindow::on_addBall_clicked()
     Ball *ball = new Ball(startPosX, startPosY, speed, angle);
     // threadManager->connectBall(ball);
     scene->addItem(ball);
+    connect(threadManager, &ThreadManager::ballPositionChanged, this, &MainWindow::updateBallPosition);
+
     emit ballCreated(ball);
 
     // QThread *thread = new QThread();
