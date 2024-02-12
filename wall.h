@@ -1,3 +1,5 @@
+// wall.h
+
 #ifndef WALL_H
 #define WALL_H
 
@@ -6,7 +8,7 @@
 class Wall : public QGraphicsLineItem
 {
 public:
-    Wall(int x1, int y1, int x2, int y2);
+    Wall(qreal x1, qreal y1, qreal x2, qreal y2, qreal width = 1); // Added width parameter
 };
 
 #endif // WALL_H

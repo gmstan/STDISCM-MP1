@@ -53,10 +53,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->field->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     // creating walls on the borders
-    Wall *bottomwall = new Wall(0, 0, 1280, 0);
-    Wall *topwall = new Wall(0, 720, 1280, 720);
-    Wall *leftwall = new Wall(0, 0, 0, 720);
-    Wall *rightwall = new Wall(1280, 0, 1280, 720);
+    Wall *bottomwall = new Wall(-10, -10, 1290, -10, 20);
+    Wall *topwall = new Wall(-10, 730, 1290, 730,20);
+    Wall *leftwall = new Wall(-10, -10, -10, 730, 20);
+    Wall *rightwall = new Wall(1290, -10, 1290, 730,20);
     scene->addItem(topwall);
     scene->addItem(bottomwall);
     scene->addItem(leftwall);

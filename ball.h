@@ -37,6 +37,7 @@ protected slots:
 
 private:
 
+    bool lineSegmentsIntersect(const QLineF &line1, const QLineF &line2, QPointF *intersectionPoint);
 };
 
 #endif // BALL_H
