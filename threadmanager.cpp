@@ -26,11 +26,6 @@ void ThreadManager::connectBall(Ball *ball){
 
     thread->start();
 
-    // allNewBalls.append(test);
-    // if (!currThread) {
-    // QThread *ballThread = new QThread();
-    // ball->moveToThread(this->thread());
-    // }
     connect(this, &ThreadManager::advanceBalls, ball, &Ball::moveBall);
     connect(ball, &Ball::finish, this, &ThreadManager::updatePos);
     // Start the thread
@@ -39,20 +34,12 @@ void ThreadManager::connectBall(Ball *ball){
 }
 
 void ThreadManager::updatePos(Ball *ball, int x,int y,qreal dx,qreal dy){
-    // int j=0;
-    // for(int i=0;i<allBalls.size();i++){
-    //     allBalls.
-    // }
-    emit ballPositionChanged(ball, x,y, dx, dy);
-    // newBall->setPos(x+dx,y+dy);
 
+    emit ballPositionChanged(ball, x,y, dx, dy);
+    ball->setPos(x + dx, y + dy);
 }
 
 void ThreadManager::timerCall(){
-
-    // for(int i=0;i<allBalls.size();i++){
-
     emit advanceBalls(1);
-    // }
 }
 

@@ -44,22 +44,16 @@ void Ball::moveBall(int step)
 
     qInfo() << "values" << startingPosX << startingPosY << dx << dy;
 
+    startingPosX += dx;
+    startingPosY += dy;
     emit finish(this, startingPosX,startingPosY,dx,dy);
     // setPos(mapToParent(dx, dy));
+
+
 }
 
 void Ball::checkCollision()
 {
-    // QList<QGraphicsItem*> colliding_items = collidingItems();
-    // for (QGraphicsItem* item : colliding_items) {
-    //     Wall* wall = dynamic_cast<Wall*>(item);
-    //     if (typeid(*item) == typeid(Wall)) {
-    //         qDebug() << "Hit";
-    //         qreal wallAngle = calculateWallAngle(wall);
-    //         DoCollision(wallAngle);
-    //         return; // Assume one collision at a time for simplicity
-    //     }
-    // }
 
     QList<QGraphicsItem*> colliding_items = collidingItems();
     QList<QLineF> colliding_walls;
@@ -117,7 +111,6 @@ void Ball::DoCollision(const QList<QLineF>& walls)
     qreal totalReflectionAngle = 0.0;
     int wallCount = 0;
 \
-
     for (const QLineF& wallLine : walls) {
         qreal wallAngle = qRadiansToDegrees(qAtan2(wallLine.dy(), wallLine.dx()));
         qreal reflectionAngle = 2 * wallAngle - incomingAngle;
@@ -143,7 +136,11 @@ void Ball::DoCollision(const QList<QLineF>& walls)
     qreal reflectionX = x() + epsilon * qCos(qDegreesToRadians(averageReflectionAngle));
     qreal reflectionY = y() + epsilon * qSin(qDegreesToRadians(averageReflectionAngle));
 
-    setPos(reflectionX, reflectionY);
+    // setPos(reflectionX, reflectionY);
+    startingPosX = reflectionX;
+    startingPosY = reflectionY;
+    // emit finish(this, startingPosX,startingPosY,dx,dy);
+
 
     // Ensure the ball is within the scene boundaries
     // qreal sceneWidth = scene()->width();

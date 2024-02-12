@@ -133,6 +133,7 @@ void MainWindow::on_addBall_clicked()
 
     emit ballCreated(ball);
 
+
     // QThread *thread = new QThread();
 
     // ball->moveToThread(thread);
