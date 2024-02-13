@@ -6,7 +6,7 @@ ThreadManager::ThreadManager(QObject *parent)
     : QObject{parent}
 {
     currSize = 0;
-    maxSize = 2;
+    maxSize = 8;
 }
 
 

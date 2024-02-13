@@ -170,11 +170,11 @@ void MainWindow::on_addBall2_clicked()
     finalAngle = ui->finalDirectionInput->text().toDouble();
     numBalls = ui->numBallsInput2->text().toInt();
 
-    qreal deltaAngle = (finalAngle - angle) / (numBalls + 1);
+    qreal deltaAngle = (finalAngle - angle) / (numBalls - 1);
 
     QVector<Ball*> balls;
     for (int i = 0; i < numBalls; ++i) {
-        qreal newAngle = deltaAngle + i * deltaAngle;
+        qreal newAngle = angle + i * deltaAngle;
         Ball *ball = new Ball(startPosX, startPosY, speed, newAngle);
         scene->addItem(ball);
         balls.append(ball);
