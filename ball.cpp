@@ -10,11 +10,6 @@ Ball::Ball(qreal startPosX, qreal startPosY, qreal spd, qreal direction)
     startingPosY = startPosY;
     speed = spd;
     angle = direction;
-
-    // random start position to be removed
-    // startingPosX = QRandomGenerator::global()->bounded(100);
-    // startingPosY = QRandomGenerator::global()->bounded(100);
-
 }
 
 QRectF Ball::boundingRect() const
@@ -32,7 +27,7 @@ void Ball::moveBall(int step)
 {
     if (!step) return;
 
-    qInfo() << "miniThread: " << QThread::currentThread();
+    // qInfo() << "miniThread: " << QThread::currentThread();
 
     qreal dx, dy;
 
@@ -41,17 +36,12 @@ void Ball::moveBall(int step)
     dx = speed*qCos(qDegreesToRadians(angle));
     dy = speed*qSin(qDegreesToRadians(angle));
 
-
-
-    qInfo() << "values" << startingPosX << startingPosY << dx << dy;
-
     startingPosX += dx;
     startingPosY += dy;
-    scene()->update(boundingRect());
+    // scene()->update(boundingRect());
     emit finish(this, startingPosX,startingPosY,dx,dy);
+
     // setPos(mapToParent(dx, dy));
-
-
 }
 
 void Ball::checkCollision()

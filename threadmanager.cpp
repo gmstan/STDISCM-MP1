@@ -6,27 +6,29 @@ ThreadManager::ThreadManager(QObject *parent)
     : QObject{parent}
 {
     currSize = 0;
-    maxSize = 4;
+    maxSize = 2;
 }
 
 
 void ThreadManager::connectBall(QVector<Ball*> balls){
-    qInfo() << "conecctBALL: " << QThread::currentThread();
 
     for (int i=0;i<balls.size();i++){
-        QThread *thread = new QThread();
-        balls[i]->moveToThread(thread);
-        thread->start();
+
+        if(currSize>=maxSize || !currThread){
+            qDebug() << "NEW THREAD";
+
+            QThread *thread = new QThread();
+            currThread = thread;
+            currThread->start();
+            currSize=0;
+        }
+
+        balls[i]->moveToThread(currThread);
+        ++currSize;
+
         connect(this, &ThreadManager::advanceBalls, balls[i], &Ball::moveBall);
         connect(balls[i], &Ball::finish, this, &ThreadManager::updatePos);
     }
-
-
-    // connect(this, &ThreadManager::advanceBalls, ball, &Ball::moveBall);
-    // connect(ball, &Ball::finish, this, &ThreadManager::updatePos);
-    // Start the thread
-
-    ++currSize;
 }
 
 void ThreadManager::updatePos(Ball *ball, int x,int y,qreal dx,qreal dy){
@@ -36,6 +38,7 @@ void ThreadManager::updatePos(Ball *ball, int x,int y,qreal dx,qreal dy){
 }
 
 void ThreadManager::timerCall(){
-    emit advanceBalls(1);
+    // emit advanceBalls(1);
+    QMetaObject::invokeMethod(this, "advanceBalls", Qt::QueuedConnection, Q_ARG(int, 1));
 }
 

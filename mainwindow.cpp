@@ -90,10 +90,8 @@ void MainWindow::paintEvent(QPaintEvent *event)
     // Your painting code goes here
 }
 
-void MainWindow::updateBallPosition(Ball *ball, int x, int y, qreal dx, qreal dy) {
-    // Update the position of the ball in the scene
-
-    qInfo() << "mainValues" << x << y << dx << dy;
+void MainWindow::updateBallPosition(Ball *ball, int x, int y, qreal dx, qreal dy)
+{
     ball->setPos(x + dx, y + dy);
 }
 
