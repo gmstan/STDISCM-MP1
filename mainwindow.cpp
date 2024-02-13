@@ -60,9 +60,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(this, &MainWindow::ballCreated, threadManager, &ThreadManager::connectBall);
 
-    QTimer *ballTimer = new QTimer(threadManager); // Pass threadManager as parent
-    connect(ballTimer, &QTimer::timeout, threadManager, &ThreadManager::timerCall);
-    ballTimer->start(20);
+    // QTimer *ballTimer = new QTimer(threadManager); // Pass threadManager as parent
+    // connect(ballTimer, &QTimer::timeout, threadManager, &ThreadManager::timerCall);
+    // ballTimer->start(20);
 
     // Calculate FPS
     fpsCountTimer = new QTimer(this);
@@ -78,7 +78,7 @@ MainWindow::~MainWindow()
 void MainWindow::displayFPS()
 {
     double fps = scene->getFPS();
-    qDebug() << "FPS value:" << fps;
+    // qDebug() << "FPS value:" << fps;
     // Assuming fps is a double variable containing the FPS value
     fpsLabel->setText(QString("FPS: ") + QString::number(fps, 'f', 1));
 }
@@ -93,6 +93,7 @@ void MainWindow::paintEvent(QPaintEvent *event)
 void MainWindow::updateBallPosition(Ball *ball, int x, int y, qreal dx, qreal dy)
 {
     ball->setPos(x + dx, y + dy);
+    // ball->setPos(ball->mapToParent(dx,dy));
 }
 
 

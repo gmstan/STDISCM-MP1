@@ -6,7 +6,9 @@ ThreadManager::ThreadManager(QObject *parent)
     : QObject{parent}
 {
     currSize = 0;
-    maxSize = 8;
+    maxSize = 16;
+    ballTimer = new QTimer();
+    ballTimer->start(20);
 }
 
 
@@ -26,7 +28,10 @@ void ThreadManager::connectBall(QVector<Ball*> balls){
         balls[i]->moveToThread(currThread);
         ++currSize;
 
-        connect(this, &ThreadManager::advanceBalls, balls[i], &Ball::moveBall);
+        // connect(this, &ThreadManager::advanceBalls, balls[i], &Ball::moveBall);
+        connect(ballTimer, &QTimer::timeout, balls[i], [=](){
+            balls[i]->moveBall(1);
+        });
         connect(balls[i], &Ball::finish, this, &ThreadManager::updatePos);
     }
 }
@@ -35,6 +40,7 @@ void ThreadManager::updatePos(Ball *ball, int x,int y,qreal dx,qreal dy){
 
     emit ballPositionChanged(ball, x,y, dx, dy);
     ball->setPos(x + dx, y + dy);
+    // ball->setPos(ball->mapToParent(dx,dy));
 }
 
 void ThreadManager::timerCall(){
