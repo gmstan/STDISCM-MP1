@@ -21,7 +21,7 @@ public:
     void updatePos(Ball *newBall, int startingPosX,int startingPosY,qreal dx,qreal dy);
 
 signals:
-    void threadStarted(); // Custom signal for indicating thread start
+    void threadStarted();
     void advanceBalls(int step);
     void ballPositionChanged(Ball *ball, int x, int y, qreal dx, qreal dy);
 private:

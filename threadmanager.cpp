@@ -15,7 +15,6 @@ ThreadManager::ThreadManager(QObject *parent)
         threadPool.enqueue(thread);
         thread->start();
     }
-    qDebug() << "curSize" << threadPool.size();
 }
 
 void ThreadManager::connectBall(QVector<Ball*> balls){
@@ -33,8 +32,6 @@ void ThreadManager::connectBall(QVector<Ball*> balls){
 
         if(currSize>=maxSize || !currThread){
             QThread *thread = threadPool.dequeue();
-            qDebug() << "newSize" << threadPool.size();
-            // QThread *thread = new QThread();
             currThread = thread;
             currThread->start();
             currSize=0;
