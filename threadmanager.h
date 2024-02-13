@@ -33,8 +33,6 @@ private:
 public slots:
     void connectBall(QVector<Ball*> balls);
     void timerCall();
-
-
 };
 
 #endif // THREADMANAGER_H

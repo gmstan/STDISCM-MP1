@@ -1,5 +1,4 @@
 #include "ball.h"
-#include "qthread.h"
 #include "wall.h"
 #include "cstdlib"
 #include <QDebug>
@@ -26,7 +25,6 @@ void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 void Ball::moveBall(int step)
 {
     if (!step) return;
-
     // qInfo() << "miniThread: " << QThread::currentThread();
 
     qreal dx, dy;
@@ -38,10 +36,8 @@ void Ball::moveBall(int step)
 
     startingPosX += dx;
     startingPosY += dy;
-    // scene()->update(boundingRect());
     emit finish(this, startingPosX,startingPosY,dx,dy);
     QMetaObject::invokeMethod(this, "emitFinishSignal", Qt::QueuedConnection, Q_ARG(qreal, startingPosX), Q_ARG(qreal, startingPosY), Q_ARG(qreal, dx), Q_ARG(qreal, dy));
-    // setPos(mapToParent(dx, dy));
 }
 
 void Ball::emitFinishSignal(qreal posX, qreal posY, qreal dx, qreal dy)
@@ -76,10 +72,6 @@ qreal Ball::calculateWallAngle(Wall* wall)
     // Calculate the angle in degrees
     qreal angle = qRadiansToDegrees(qAtan2(wallLine.dy(), wallLine.dx()));
 
-    // Calculate the angle in degrees
-    //qreal angle = qRadiansToDegrees(qAtan2(wallY - ballY, wallX - ballX));
-
-    qDebug() << angle;
     // Ensure the angle is positive and in the range [0, 360)
     angle = fmod(angle + 360.0, 360.0);
 
@@ -117,11 +109,8 @@ void Ball::DoCollision(const QList<QLineF>& walls)
     qreal reflectionX = x() + epsilon * qCos(qDegreesToRadians(averageReflectionAngle));
     qreal reflectionY = y() + epsilon * qSin(qDegreesToRadians(averageReflectionAngle));
 
-    // setPos(reflectionX, reflectionY);
     startingPosX = reflectionX;
     startingPosY = reflectionY;
-    // emit finish(this, startingPosX,startingPosY,dx,dy);
-
 }
 
 

@@ -60,10 +60,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(this, &MainWindow::ballCreated, threadManager, &ThreadManager::connectBall);
 
-    // QTimer *ballTimer = new QTimer(threadManager); // Pass threadManager as parent
-    // connect(ballTimer, &QTimer::timeout, threadManager, &ThreadManager::timerCall);
-    // ballTimer->start(20);
-
     // Calculate FPS
     fpsCountTimer = new QTimer(this);
     connect(fpsCountTimer, &QTimer::timeout, scene, &GameScene::computeFPS);
@@ -78,22 +74,17 @@ MainWindow::~MainWindow()
 void MainWindow::displayFPS()
 {
     double fps = scene->getFPS();
-    // qDebug() << "FPS value:" << fps;
-    // Assuming fps is a double variable containing the FPS value
     fpsLabel->setText(QString("FPS: ") + QString::number(fps, 'f', 1));
 }
 
 void MainWindow::paintEvent(QPaintEvent *event)
 {
-    // Increment frame count
     ++frameCount;
-    // Your painting code goes here
 }
 
 void MainWindow::updateBallPosition(Ball *ball, int x, int y, qreal dx, qreal dy)
 {
     ball->setPos(x + dx, y + dy);
-    // ball->setPos(ball->mapToParent(dx,dy));
 }
 
 
@@ -110,7 +101,6 @@ void MainWindow::on_addBall_clicked()
     angle = ui->directionInput->text().toDouble();
 
     Ball *ball = new Ball(startPosX, startPosY, speed, angle);
-    // threadManager->connectBall(ball);
     scene->addItem(ball);
     connect(threadManager, &ThreadManager::ballPositionChanged, this, &MainWindow::updateBallPosition);
 
@@ -162,6 +152,7 @@ void MainWindow::on_addBall1_clicked()
     ui->numBallsInput1->setText("");
 }
 
+//Adding Multiple Balls with a range of directions
 void MainWindow::on_addBall2_clicked()
 {
     startPosX = ui->xInput2->text().toInt();
@@ -190,6 +181,7 @@ void MainWindow::on_addBall2_clicked()
     ui->numBallsInput2->setText("");
 }
 
+//Adding Multiple Balls with a range of velocities
 void MainWindow::on_addBall3_clicked()
 {
     startPosX = ui->xInput3->text().toInt();
@@ -219,6 +211,7 @@ void MainWindow::on_addBall3_clicked()
 
 int xStart, xEnd, yStart, yEnd;
 
+//Adding a wall in the scene
 void MainWindow::on_addWall_clicked()
 {
     xStart = ui->wallXStart->text().toInt();

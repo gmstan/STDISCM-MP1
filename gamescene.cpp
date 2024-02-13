@@ -9,7 +9,6 @@ GameScene::GameScene(QObject *parent)
     frames = 0;
 }
 
-
 void GameScene::computeFPS()
 {
     QTime currentTime = QTime::currentTime();
@@ -18,9 +17,7 @@ void GameScene::computeFPS()
 
     if (elapsedTime > 0) {
         double fps = 2400.0 / elapsedTime;
-        // frames++;
         currFPS = fps;
-        // qDebug() << "FPS:" << QString::number(fps, 'f', 2);
     }
 }
 

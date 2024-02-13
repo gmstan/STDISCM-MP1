@@ -22,7 +22,6 @@ public:
     qreal startingPosY = 0;
     qreal angle = 0;
     qreal speed = 0;
-    // void advance(int step) override;
 
 signals:
     void finish(Ball *ball, int startingPosX,int startingPosY,qreal dx,qreal dy);
