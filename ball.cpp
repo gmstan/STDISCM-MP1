@@ -25,7 +25,6 @@ void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 void Ball::moveBall(int step)
 {
     if (!step) return;
-    // qInfo() << "miniThread: " << QThread::currentThread();
 
     qreal dx, dy;
 
@@ -59,7 +58,6 @@ void Ball::checkCollision()
     }
 
     if (!colliding_walls.isEmpty()) {
-        qDebug() << "Hit";
         DoCollision(colliding_walls);
     }
 }
@@ -87,27 +85,27 @@ void Ball::DoCollision(const QList<QLineF>& walls)
     for (const QLineF& wallLine : walls) {
         qreal wallAngle = qRadiansToDegrees(qAtan2(wallLine.dy(), wallLine.dx()));
         qreal reflectionAngle = 2 * wallAngle - incomingAngle;
-        qDebug() << reflectionAngle;
         totalReflectionAngle += reflectionAngle;
         wallCount++;
     }
-
-    qDebug() << wallCount;
-
     // Calculate the average reflection angle
     qreal averageReflectionAngle = totalReflectionAngle / wallCount;
 
     if (wallCount == 2){
         averageReflectionAngle -= 180;
     }
+
+    // Set the ball's angle to the new average reflection angle
+    // Calculate the average reflection angle
+    averageReflectionAngle = totalReflectionAngle / wallCount;
+
     // Set the ball's angle to the new average reflection angle
     angle = averageReflectionAngle;
 
-    qDebug() << angle;
     // Move the ball slightly away from the walls to avoid repeated collisions
     qreal epsilon = 1.0;
-    qreal reflectionX = x() + epsilon * qCos(qDegreesToRadians(averageReflectionAngle));
-    qreal reflectionY = y() + epsilon * qSin(qDegreesToRadians(averageReflectionAngle));
+    qreal reflectionX = startingPosX + epsilon * qCos(qDegreesToRadians(averageReflectionAngle));
+    qreal reflectionY = startingPosY + epsilon * qSin(qDegreesToRadians(averageReflectionAngle));
 
     startingPosX = reflectionX;
     startingPosY = reflectionY;

@@ -27,6 +27,7 @@ void ThreadManager::connectBall(QVector<Ball*> balls){
         ++currSize;
 
         connect(ballTimer, &QTimer::timeout, balls[i], [=](){
+            QMutexLocker locker(&mutex);
             balls[i]->moveBall(1);
         });
         connect(balls[i], &Ball::finish, this, &ThreadManager::updatePos);
@@ -34,8 +35,9 @@ void ThreadManager::connectBall(QVector<Ball*> balls){
 }
 
 void ThreadManager::updatePos(Ball *ball, int x,int y,qreal dx,qreal dy){
-
     emit ballPositionChanged(ball, x,y, dx, dy);
+
+    QMutexLocker locker(&mutex);
     ball->setPos(x + dx, y + dy);
 }
 
