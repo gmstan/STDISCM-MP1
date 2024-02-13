@@ -35,7 +35,6 @@ void Ball::moveBall(int step)
 
     startingPosX += dx;
     startingPosY += dy;
-    emit finish(this, startingPosX,startingPosY,dx,dy);
     QMetaObject::invokeMethod(this, "emitFinishSignal", Qt::QueuedConnection, Q_ARG(qreal, startingPosX), Q_ARG(qreal, startingPosY), Q_ARG(qreal, dx), Q_ARG(qreal, dy));
 }
 
