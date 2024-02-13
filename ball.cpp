@@ -110,7 +110,6 @@ void Ball::DoCollision(const QList<QLineF>& walls)
     startingPosY = reflectionY;
 }
 
-
 QPainterPath Ball::shape() const
 {
     QPainterPath path;
