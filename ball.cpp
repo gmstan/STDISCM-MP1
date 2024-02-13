@@ -40,8 +40,13 @@ void Ball::moveBall(int step)
     startingPosY += dy;
     // scene()->update(boundingRect());
     emit finish(this, startingPosX,startingPosY,dx,dy);
-
+    QMetaObject::invokeMethod(this, "emitFinishSignal", Qt::QueuedConnection, Q_ARG(qreal, startingPosX), Q_ARG(qreal, startingPosY), Q_ARG(qreal, dx), Q_ARG(qreal, dy));
     // setPos(mapToParent(dx, dy));
+}
+
+void Ball::emitFinishSignal(qreal posX, qreal posY, qreal dx, qreal dy)
+{
+    emit finish(this, posX, posY, dx, dy);
 }
 
 void Ball::checkCollision()
@@ -81,22 +86,6 @@ qreal Ball::calculateWallAngle(Wall* wall)
     return angle;
 }
 
-// void Ball::DoCollision(qreal wallAngle)
-// {
-//     qreal reflectionAngle = 2 * wallAngle - angle;
-
-//     // Adjust the ball's angle to the new reflection angle
-//     angle = reflectionAngle;
-
-//     qDebug() << angle;
-//     // Move the ball slightly away from the wall to avoid repeated collisions
-//     qreal epsilon = 1.0;
-//     qreal reflectionX = x() + epsilon * qCos(qDegreesToRadians(reflectionAngle));
-//     qreal reflectionY = y() + epsilon * qSin(qDegreesToRadians(reflectionAngle));
-
-//     setPos(reflectionX, reflectionY);
-// }
-
 void Ball::DoCollision(const QList<QLineF>& walls)
 {
     qreal incomingAngle = angle;
@@ -133,20 +122,6 @@ void Ball::DoCollision(const QList<QLineF>& walls)
     startingPosY = reflectionY;
     // emit finish(this, startingPosX,startingPosY,dx,dy);
 
-
-    // Ensure the ball is within the scene boundaries
-    // qreal sceneWidth = scene()->width();
-    // qreal sceneHeight = scene()->height();
-
-    // if (x() < 0)
-    //     setX(0);
-    // else if (x() > sceneWidth)
-    //     setX(sceneWidth);
-
-    // if (y() < 0)
-    //     setY(0);
-    // else if (y() > sceneHeight)
-    //     setY(sceneHeight);
 }
 
 

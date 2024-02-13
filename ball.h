@@ -30,6 +30,7 @@ signals:
 public slots:
     void moveBall(int step);
 
+    void emitFinishSignal(qreal posX, qreal posY, qreal dx, qreal dy);
 protected slots:
     void checkCollision();
     qreal calculateWallAngle(Wall *wall);
