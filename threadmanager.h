@@ -10,6 +10,7 @@
 #include <QObject>
 #include <QTimer>
 #include <QMutex>
+#include <QQueue>
 
 class ThreadManager : public QObject
 {
@@ -31,6 +32,7 @@ private:
     QThread *currThread;
     QTimer *ballTimer;
     QMutex mutex;
+    QQueue<QThread*> threadPool;
 
 public slots:
     void connectBall(QVector<Ball*> balls);

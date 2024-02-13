@@ -9,15 +9,32 @@ ThreadManager::ThreadManager(QObject *parent)
     maxSize = 16;
     ballTimer = new QTimer();
     ballTimer->start(20);
+
+    for (int i = 0; i < 100; ++i) {
+        QThread *thread = new QThread(this);
+        threadPool.enqueue(thread);
+        thread->start();
+    }
+    qDebug() << "curSize" << threadPool.size();
 }
 
 void ThreadManager::connectBall(QVector<Ball*> balls){
 
     for (int i=0;i<balls.size();i++){
 
+        if (threadPool.isEmpty()) {
+            // If the pool is empty, create a new thread and add it to the pool
+            for (int i = 0; i < 10; ++i) {
+                QThread *thread = new QThread(this);
+                threadPool.enqueue(thread);
+                thread->start();
+            }
+        }
+
         if(currSize>=maxSize || !currThread){
-            // qDebug() << "NEW THREAD";
-            QThread *thread = new QThread();
+            QThread *thread = threadPool.dequeue();
+            qDebug() << "newSize" << threadPool.size();
+            // QThread *thread = new QThread();
             currThread = thread;
             currThread->start();
             currSize=0;
