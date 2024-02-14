@@ -29,27 +29,27 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Lock the size of the graphics view
     ui->field->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    ui->field->setFixedSize(1280, 720); // Set your desired size
+    ui->field->setFixedSize(1930, 1090); // Set your desired size
 
     // Set the bottom-left corner of the QGraphicsView to be (0,0)
     ui->field->setRenderHint(QPainter::Antialiasing, true);
-    ui->field->setSceneRect(0, 0, ui->field->width(), ui->field->height());
+    ui->field->setSceneRect(0, 0, ui->field->width()*1.75, ui->field->height()*1.75);
 
     // Apply a transformation to the view
     QTransform transform;
     transform.translate(0, ui->field->height());
-    transform.scale(1, -1);
+    transform.scale(0.75, -0.75);
     ui->field->setTransform(transform);
 
-    // Disable scrollbars
+    // // Disable scrollbars
     ui->field->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->field->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     // creating walls on the borders
-    Wall *bottomwall = new Wall(0, 0, 1280, 0);
-    Wall *topwall = new Wall(0, 720, 1280, 720);
-    Wall *leftwall = new Wall(0, 0, 0, 720);
-    Wall *rightwall = new Wall(1280, 0, 1280, 720);
+    Wall *bottomwall = new Wall(0, -1, 2571, -1);
+    Wall *topwall = new Wall(0, 1451, 2571, 1451);
+    Wall *leftwall = new Wall(-1, 0, -1, 1451);
+    Wall *rightwall = new Wall(2571, 0, 2571, 1451);
     scene->addItem(topwall);
     scene->addItem(bottomwall);
     scene->addItem(leftwall);
@@ -225,9 +225,3 @@ void MainWindow::on_addWall_clicked()
     ui->wallXEnd->setText("");
     ui->wallYEnd->setText("");
 }
-
-
-
-
-
-
