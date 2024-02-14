@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1670</width>
-    <height>766</height>
+    <width>1632</width>
+    <height>762</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -23,7 +23,7 @@
    <widget class="QGroupBox" name="addonConfig">
     <property name="geometry">
      <rect>
-      <x>1310</x>
+      <x>1300</x>
       <y>10</y>
       <width>321</width>
       <height>741</height>
@@ -998,7 +998,7 @@
    <widget class="QGraphicsView" name="field">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>30</y>
       <width>1280</width>
       <height>720</height>
