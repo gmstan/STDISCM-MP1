@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1670</width>
-    <height>795</height>
+    <height>766</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -24,8 +24,8 @@
     <property name="geometry">
      <rect>
       <x>1310</x>
-      <y>30</y>
-      <width>341</width>
+      <y>10</y>
+      <width>321</width>
       <height>741</height>
      </rect>
     </property>
@@ -40,8 +40,8 @@
     <widget class="QGroupBox" name="wallConfig">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>480</y>
+       <x>20</x>
+       <y>470</y>
        <width>281</width>
        <height>241</height>
       </rect>
@@ -185,7 +185,7 @@
       <rect>
        <x>10</x>
        <y>30</y>
-       <width>321</width>
+       <width>301</width>
        <height>421</height>
       </rect>
      </property>
@@ -197,7 +197,7 @@
        <rect>
         <x>10</x>
         <y>30</y>
-        <width>301</width>
+        <width>281</width>
         <height>381</height>
        </rect>
       </property>
@@ -211,7 +211,7 @@
        <widget class="QLineEdit" name="yInput">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>170</x>
           <y>70</y>
           <width>81</width>
           <height>20</height>
@@ -275,7 +275,7 @@
        <widget class="QLineEdit" name="velocityInput">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>170</x>
           <y>110</y>
           <width>81</width>
           <height>20</height>
@@ -285,7 +285,7 @@
        <widget class="QLineEdit" name="xInput">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>170</x>
           <y>40</y>
           <width>81</width>
           <height>20</height>
@@ -313,7 +313,7 @@
        <widget class="QLineEdit" name="directionInput">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>170</x>
           <y>140</y>
           <width>81</width>
           <height>20</height>
@@ -323,7 +323,7 @@
        <widget class="QPushButton" name="addBall">
         <property name="geometry">
          <rect>
-          <x>110</x>
+          <x>100</x>
           <y>310</y>
           <width>80</width>
           <height>24</height>
@@ -346,7 +346,7 @@
        <widget class="QLabel" name="velocity1">
         <property name="geometry">
          <rect>
-          <x>30</x>
+          <x>20</x>
           <y>220</y>
           <width>71</width>
           <height>16</height>
@@ -364,7 +364,7 @@
        <widget class="QLineEdit" name="velocityInput1">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>170</x>
           <y>220</y>
           <width>81</width>
           <height>20</height>
@@ -374,7 +374,7 @@
        <widget class="QLabel" name="direction1">
         <property name="geometry">
          <rect>
-          <x>30</x>
+          <x>20</x>
           <y>250</y>
           <width>81</width>
           <height>16</height>
@@ -392,7 +392,7 @@
        <widget class="QPushButton" name="addBall1">
         <property name="geometry">
          <rect>
-          <x>110</x>
+          <x>90</x>
           <y>310</y>
           <width>80</width>
           <height>24</height>
@@ -410,7 +410,7 @@
        <widget class="QLineEdit" name="directionInput1">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>170</x>
           <y>250</y>
           <width>81</width>
           <height>20</height>
@@ -422,7 +422,7 @@
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>281</width>
+          <width>251</width>
           <height>91</height>
          </rect>
         </property>
@@ -432,7 +432,7 @@
         <widget class="QLineEdit" name="startXInput">
          <property name="geometry">
           <rect>
-           <x>180</x>
+           <x>160</x>
            <y>30</y>
            <width>81</width>
            <height>20</height>
@@ -442,7 +442,7 @@
         <widget class="QLineEdit" name="endXInput">
          <property name="geometry">
           <rect>
-           <x>180</x>
+           <x>160</x>
            <y>60</y>
            <width>81</width>
            <height>20</height>
@@ -491,7 +491,7 @@
          <rect>
           <x>10</x>
           <y>110</y>
-          <width>281</width>
+          <width>251</width>
           <height>91</height>
          </rect>
         </property>
@@ -501,7 +501,7 @@
         <widget class="QLineEdit" name="startYInput">
          <property name="geometry">
           <rect>
-           <x>180</x>
+           <x>160</x>
            <y>30</y>
            <width>81</width>
            <height>20</height>
@@ -511,7 +511,7 @@
         <widget class="QLineEdit" name="endYInput">
          <property name="geometry">
           <rect>
-           <x>180</x>
+           <x>160</x>
            <y>60</y>
            <width>81</width>
            <height>20</height>
@@ -558,7 +558,7 @@
        <widget class="QLabel" name="numBalls1">
         <property name="geometry">
          <rect>
-          <x>30</x>
+          <x>20</x>
           <y>280</y>
           <width>101</width>
           <height>16</height>
@@ -576,7 +576,7 @@
        <widget class="QLineEdit" name="numBallsInput1">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>170</x>
           <y>280</y>
           <width>81</width>
           <height>20</height>
@@ -593,7 +593,7 @@
          <rect>
           <x>10</x>
           <y>20</y>
-          <width>281</width>
+          <width>251</width>
           <height>91</height>
          </rect>
         </property>
@@ -603,7 +603,7 @@
         <widget class="QLineEdit" name="initialDirectionInput">
          <property name="geometry">
           <rect>
-           <x>180</x>
+           <x>160</x>
            <y>30</y>
            <width>81</width>
            <height>20</height>
@@ -613,7 +613,7 @@
         <widget class="QLineEdit" name="finalDirectionInput">
          <property name="geometry">
           <rect>
-           <x>180</x>
+           <x>160</x>
            <y>60</y>
            <width>81</width>
            <height>20</height>
@@ -696,7 +696,7 @@
        <widget class="QLineEdit" name="xInput2">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>170</x>
           <y>130</y>
           <width>81</width>
           <height>20</height>
@@ -706,7 +706,7 @@
        <widget class="QLineEdit" name="yInput2">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>170</x>
           <y>160</y>
           <width>81</width>
           <height>20</height>
@@ -734,7 +734,7 @@
        <widget class="QLineEdit" name="velocityInput2">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>170</x>
           <y>190</y>
           <width>81</width>
           <height>20</height>
@@ -744,7 +744,7 @@
        <widget class="QPushButton" name="addBall2">
         <property name="geometry">
          <rect>
-          <x>110</x>
+          <x>100</x>
           <y>310</y>
           <width>80</width>
           <height>24</height>
@@ -780,7 +780,7 @@
        <widget class="QLineEdit" name="numBallsInput2">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>170</x>
           <y>220</y>
           <width>81</width>
           <height>20</height>
@@ -795,7 +795,7 @@
        <widget class="QLineEdit" name="yInput3">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>170</x>
           <y>160</y>
           <width>81</width>
           <height>20</height>
@@ -841,7 +841,7 @@
        <widget class="QLineEdit" name="xInput3">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>170</x>
           <y>130</y>
           <width>81</width>
           <height>20</height>
@@ -869,7 +869,7 @@
        <widget class="QLineEdit" name="directionInput3">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>170</x>
           <y>190</y>
           <width>81</width>
           <height>20</height>
@@ -881,7 +881,7 @@
          <rect>
           <x>10</x>
           <y>20</y>
-          <width>281</width>
+          <width>251</width>
           <height>91</height>
          </rect>
         </property>
@@ -891,7 +891,7 @@
         <widget class="QLineEdit" name="initialVelocityInput">
          <property name="geometry">
           <rect>
-           <x>180</x>
+           <x>160</x>
            <y>30</y>
            <width>81</width>
            <height>20</height>
@@ -901,7 +901,7 @@
         <widget class="QLineEdit" name="finalVelocityInput">
          <property name="geometry">
           <rect>
-           <x>180</x>
+           <x>160</x>
            <y>60</y>
            <width>81</width>
            <height>20</height>
@@ -948,7 +948,7 @@
        <widget class="QPushButton" name="addBall3">
         <property name="geometry">
          <rect>
-          <x>110</x>
+          <x>100</x>
           <y>310</y>
           <width>80</width>
           <height>24</height>
@@ -984,7 +984,7 @@
        <widget class="QLineEdit" name="numBallsInput3">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>170</x>
           <y>220</y>
           <width>81</width>
           <height>20</height>
@@ -999,7 +999,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>50</y>
+      <y>30</y>
       <width>1280</width>
       <height>720</height>
      </rect>
@@ -1024,7 +1024,7 @@
     <property name="geometry">
      <rect>
       <x>1240</x>
-      <y>30</y>
+      <y>10</y>
       <width>61</width>
       <height>16</height>
      </rect>
