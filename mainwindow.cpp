@@ -29,16 +29,16 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Lock the size of the graphics view
     ui->field->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    ui->field->setFixedSize(1930, 1090); // Set your desired size
+    ui->field->setFixedSize(1287, 727); // Set your desired size
 
     // Set the bottom-left corner of the QGraphicsView to be (0,0)
     ui->field->setRenderHint(QPainter::Antialiasing, true);
-    ui->field->setSceneRect(0, 0, ui->field->width()*1.75, ui->field->height()*1.75);
+    ui->field->setSceneRect(0, 0, ui->field->width()*2, ui->field->height()*2);
 
     // Apply a transformation to the view
     QTransform transform;
     transform.translate(0, ui->field->height());
-    transform.scale(0.75, -0.75);
+    transform.scale(0.50, -0.50);
     ui->field->setTransform(transform);
 
     // // Disable scrollbars
