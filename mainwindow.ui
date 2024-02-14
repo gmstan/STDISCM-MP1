@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1632</width>
-    <height>762</height>
+    <width>1639</width>
+    <height>769</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -23,7 +23,7 @@
    <widget class="QGroupBox" name="addonConfig">
     <property name="geometry">
      <rect>
-      <x>1300</x>
+      <x>1310</x>
       <y>10</y>
       <width>321</width>
       <height>741</height>
@@ -998,7 +998,7 @@
    <widget class="QGraphicsView" name="field">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>20</x>
       <y>30</y>
       <width>1280</width>
       <height>720</height>
@@ -1023,7 +1023,7 @@
    <widget class="QLabel" name="fpsCounterLabel">
     <property name="geometry">
      <rect>
-      <x>1240</x>
+      <x>1250</x>
       <y>10</y>
       <width>61</width>
       <height>16</height>
