@@ -108,8 +108,6 @@ void MainWindow::on_addBall_clicked()
     balls.append(ball);
     emit ballCreated(balls);
 
-    qInfo() << "main: " << QThread::currentThread();
-
     // clearing of input fields
     ui->xInput->setText("");
     ui->yInput->setText("");
