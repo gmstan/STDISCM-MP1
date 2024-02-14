@@ -54,11 +54,16 @@ The application also displays an FPS counter with the base frame-rate being 120 
 
 # Important Information
 
-- The application may occasionally crash when adding balls. You may rerun the application again with the same input.
-- Please only input X-position from __ to __ and Y-positions from __ to __. 
-- Please only input velocities from 0 to 8. Inputting negative velocities will cause the wall collision to fail. Inputting velocities over 8 will cause the ball to pass through the wall instead of bouncing on it.
+- The application may occasionally crash when adding balls. You can rerun the application again with the same input to retest the add-on configuration.
+
+- Please only input X-position from 0 to 1280, and Y-positions from 0 to 720. 
+
+- Please only input velocities from 0 to 8. Inputting negative velocities will cause the wall collision to fail. Inputting velocities over 8 may also cause the ball to pass through the wall instead of bouncing on it.
+
 - Movement Directions starts on the positive X. Meaning 0 will cause the ball to move rightward; 90 will cause the ball to move upwards; 180 causes the ball to move leftwards, and 270 causes the ball to go downwards.
+
 - The more balls added, the worse the frame rate becomes. If the frame rate drops significantly, the ball movement may be affected.
+
 - If you see the balls leave a trail, this is only a UI glitch, you can remove it by reloading the application (ie. minimize and reopen the app, or clicking on a different app and clicking back to the app to reload the scene)
 
 
