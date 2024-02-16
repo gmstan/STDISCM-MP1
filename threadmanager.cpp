@@ -10,7 +10,7 @@ ThreadManager::ThreadManager(QObject *parent)
     ballTimer = new QTimer();
     ballTimer->start(20);
 
-    for (int i = 0; i < 50; ++i) {
+    for (int i = 0; i < 100; ++i) {
         QThread *thread = new QThread(this);
         threadPool.enqueue(thread);
         thread->start();
