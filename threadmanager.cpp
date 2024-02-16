@@ -10,7 +10,7 @@ ThreadManager::ThreadManager(QObject *parent)
     ballTimer = new QTimer();
     ballTimer->start(20);
 
-    for (int i = 0; i < 100; ++i) {
+    for (int i = 0; i < 50; ++i) {
         QThread *thread = new QThread(this);
         threadPool.enqueue(thread);
         thread->start();
@@ -20,9 +20,7 @@ ThreadManager::ThreadManager(QObject *parent)
 void ThreadManager::connectBall(QVector<Ball*> balls){
 
     for (int i=0;i<balls.size();i++){
-
         if (threadPool.isEmpty()) {
-            // If the pool is empty, create a new thread and add it to the pool
             for (int i = 0; i < 10; ++i) {
                 QThread *thread = new QThread(this);
                 threadPool.enqueue(thread);

@@ -6,7 +6,9 @@
 #include <QGraphicsScene>
 #include <QRandomGenerator>
 #include <QtMath>
+#include <QDebug>
 #include <wall.h>
+
 
 class Ball : public QGraphicsObject
 {
@@ -15,8 +17,7 @@ public:
     Ball(qreal startPosX, qreal startPosY, qreal speed, qreal angle);
     QRectF boundingRect() const override;
     QPainterPath shape() const override;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
-               QWidget *widget) override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,QWidget *widget) override;
 
     qreal startingPosX = 0;
     qreal startingPosY = 0;
@@ -28,7 +29,6 @@ signals:
 
 public slots:
     void moveBall(int step);
-
     void emitFinishSignal(qreal posX, qreal posY, qreal dx, qreal dy);
 protected slots:
     void checkCollision();
@@ -39,4 +39,4 @@ private:
 
 };
 
-#endif // BALL_H
+#endif

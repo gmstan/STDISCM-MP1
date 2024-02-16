@@ -3,12 +3,13 @@
 
 #include <QGraphicsScene>
 #include <QTime>
+#include <QDebug>
+#include <QTimer>
 
 class GameScene : public QGraphicsScene
 {
 public:
     GameScene(QObject *parent = nullptr);
-
     qreal getFPS();
 
 public slots:
@@ -22,4 +23,4 @@ private:
 
 };
 
-#endif // GAMESCENE_H
+#endif

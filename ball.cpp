@@ -1,7 +1,7 @@
 #include "ball.h"
 #include "wall.h"
 #include "cstdlib"
-#include <QDebug>
+
 
 Ball::Ball(qreal startPosX, qreal startPosY, qreal spd, qreal direction)
 {
@@ -32,9 +32,9 @@ void Ball::moveBall(int step)
 
     dx = speed*qCos(qDegreesToRadians(angle));
     dy = speed*qSin(qDegreesToRadians(angle));
-
     startingPosX += dx;
     startingPosY += dy;
+
     QMetaObject::invokeMethod(this, "emitFinishSignal", Qt::QueuedConnection, Q_ARG(qreal, startingPosX), Q_ARG(qreal, startingPosY), Q_ARG(qreal, dx), Q_ARG(qreal, dy));
 }
 
@@ -45,7 +45,6 @@ void Ball::emitFinishSignal(qreal posX, qreal posY, qreal dx, qreal dy)
 
 void Ball::checkCollision()
 {
-
     QList<QGraphicsItem*> colliding_items = collidingItems();
     QList<QLineF> colliding_walls;
 
@@ -63,13 +62,9 @@ void Ball::checkCollision()
 
 qreal Ball::calculateWallAngle(Wall* wall)
 {
-    // Retrieve the line representing the wall
     QLineF wallLine = wall->line();
 
-    // Calculate the angle in degrees
     qreal angle = qRadiansToDegrees(qAtan2(wallLine.dy(), wallLine.dx()));
-
-    // Ensure the angle is positive and in the range [0, 360)
     angle = fmod(angle + 360.0, 360.0);
 
     return angle;
@@ -87,21 +82,16 @@ void Ball::DoCollision(const QList<QLineF>& walls)
         totalReflectionAngle += reflectionAngle;
         wallCount++;
     }
-    // Calculate the average reflection angle
+
     qreal averageReflectionAngle = totalReflectionAngle / wallCount;
 
     if (wallCount == 2){
         averageReflectionAngle -= 180;
     }
-
-    // Set the ball's angle to the new average reflection angle
-    // Calculate the average reflection angle
     averageReflectionAngle = totalReflectionAngle / wallCount;
 
-    // Set the ball's angle to the new average reflection angle
     angle = averageReflectionAngle;
 
-    // Move the ball slightly away from the walls to avoid repeated collisions
     qreal epsilon = 1.0;
     qreal reflectionX = startingPosX + epsilon * qCos(qDegreesToRadians(averageReflectionAngle));
     qreal reflectionY = startingPosY + epsilon * qSin(qDegreesToRadians(averageReflectionAngle));

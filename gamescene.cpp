@@ -1,7 +1,4 @@
 #include "gamescene.h"
-#include <QDebug>
-#include <QTime>
-#include <QTimer>
 
 GameScene::GameScene(QObject *parent)
 {

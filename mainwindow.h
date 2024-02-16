@@ -8,6 +8,8 @@
 #include <QGraphicsScene>
 #include <QGraphicsEllipseItem>
 #include "gamescene.h"
+#include <QThreadPool>
+#include <QThread>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -31,12 +33,11 @@ public slots:
 
 private slots:
     void displayFPS();
-
     void on_addBall_clicked();
-    void on_addWall_clicked();
     void on_addBall1_clicked();
     void on_addBall2_clicked();
     void on_addBall3_clicked();
+    void on_addWall_clicked();
 
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -49,8 +50,7 @@ private:
     GameScene *scene;
     QGraphicsEllipseItem *ball;
     int frameCount;
-    int dx, dy;
     ThreadManager *threadManager;
 };
 
-#endif // MAINWINDOW_H
+#endif

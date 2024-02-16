@@ -4,8 +4,6 @@
 #include "wall.h"
 #include "threadmanager.h"
 #include "gamescene.h"
-#include <QThreadPool>
-#include <QThread>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -13,39 +11,29 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Create a scene for the graphics view
     scene = new GameScene(this);
     ui->field->setScene(scene);
 
-    // Create a label to display FPS
     fpsLabel = ui->fpsCounterLabel;
     fpsLabel->setText("FPS: 0");
 
-
-    // Setup a timer to update FPS
     fpsTimer = new QTimer(this);
     connect(fpsTimer, SIGNAL(timeout()), this, SLOT(displayFPS()));
-    fpsTimer->start(500); // Update every half-second
+    fpsTimer->start(500);
 
-    // Lock the size of the graphics view
     ui->field->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    ui->field->setFixedSize(1287, 727); // Set your desired size
-
-    // Set the bottom-left corner of the QGraphicsView to be (0,0)
+    ui->field->setFixedSize(1287, 727);
     ui->field->setRenderHint(QPainter::Antialiasing, true);
     ui->field->setSceneRect(0, 0, ui->field->width()*2, ui->field->height()*2);
 
-    // Apply a transformation to the view
     QTransform transform;
     transform.translate(0, ui->field->height());
     transform.scale(0.50, -0.50);
     ui->field->setTransform(transform);
 
-    // // Disable scrollbars
     ui->field->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->field->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    // creating walls on the borders
     Wall *bottomwall = new Wall(0, -1, 2571, -1);
     Wall *topwall = new Wall(0, 1451, 2571, 1451);
     Wall *leftwall = new Wall(-1, 0, -1, 1451);
@@ -55,12 +43,10 @@ MainWindow::MainWindow(QWidget *parent)
     scene->addItem(leftwall);
     scene->addItem(rightwall);
 
-
     threadManager = new ThreadManager(this);
 
     connect(this, &MainWindow::ballCreated, threadManager, &ThreadManager::connectBall);
 
-    // Calculate FPS
     fpsCountTimer = new QTimer(this);
     connect(fpsCountTimer, &QTimer::timeout, scene, &GameScene::computeFPS);
     fpsCountTimer->start(20);
@@ -94,7 +80,6 @@ qreal speed, angle, startPosX, startPosY, endPosX, endPosY, finalAngle, finalSpe
 //Adding a Single Ball
 void MainWindow::on_addBall_clicked()
 {
-    // variables, starting position X and Y, number of balls, ball speed, ball direction
     startPosX = ui->xInput->text().toInt();
     startPosY = ui->yInput->text().toInt();
     speed = ui->velocityInput->text().toDouble();
@@ -108,7 +93,6 @@ void MainWindow::on_addBall_clicked()
     balls.append(ball);
     emit ballCreated(balls);
 
-    // clearing of input fields
     ui->xInput->setText("");
     ui->yInput->setText("");
     ui->velocityInput->setText("");
@@ -217,7 +201,7 @@ void MainWindow::on_addWall_clicked()
     xEnd = ui->wallXEnd->text().toInt();
     yEnd = ui->wallYEnd->text().toInt();
 
-    Wall *wall = new Wall(xStart, yStart, xEnd, yEnd);
+    Wall *wall = new Wall(xStart*2, yStart*2, xEnd*2, yEnd*2);
     scene->addItem(wall);
 
     ui->wallXStart->setText("");

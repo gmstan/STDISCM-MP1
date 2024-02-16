@@ -21,14 +21,11 @@ public:
     void updatePos(Ball *newBall, int startingPosX,int startingPosY,qreal dx,qreal dy);
 
 signals:
-    void threadStarted();
     void advanceBalls(int step);
     void ballPositionChanged(Ball *ball, int x, int y, qreal dx, qreal dy);
 private:
     int maxSize;
     int currSize;
-    QVector<Ball*> allBalls;
-    QVector<Ball*> allNewBalls;
     QThread *currThread;
     QTimer *ballTimer;
     QMutex mutex;
@@ -39,4 +36,4 @@ public slots:
     void timerCall();
 };
 
-#endif // THREADMANAGER_H
+#endif
