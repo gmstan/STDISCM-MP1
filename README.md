@@ -68,7 +68,9 @@ The application also displays an FPS counter with the base frame-rate being 120 
     - 180 causes the ball to move leftwards
     - 270 causes the ball to go downwards
 
-- If the frame rate drops significantly, the ball movement may be affected.
+- If the frame rate drops significantly, the ball movement/collision may be affected.
+
+- If a wall spawns on a ball or vice-versa, the ball will slide of the wall.
 
 - If you see the balls leave a trail, this is only a UI glitch, you can remove it by reloading the application 
     - (ie. minimize and reopen the app, or clicking on a different app and clicking back to the program to reload the scene)
