@@ -13,6 +13,7 @@ SOURCES += \
     gamescene.cpp \
     main.cpp \
     mainwindow.cpp \
+    sprite.cpp \
     threadmanager.cpp \
     wall.cpp
 
@@ -20,6 +21,7 @@ HEADERS += \
     ball.h \
     gamescene.h \
     mainwindow.h \
+    sprite.h \
     threadmanager.h \
     wall.h
 
@@ -30,3 +32,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    sprite.png

@@ -4,6 +4,7 @@
 #include "wall.h"
 #include "threadmanager.h"
 #include "gamescene.h"
+#include "sprite.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -200,6 +201,17 @@ void MainWindow::on_startExplore_clicked()
     // transform.translate(0, ui->field->height());
     transform.scale(17, -15);
     ui->field->setTransform(transform);
+
+
+    // Calculate the center position of the view
+    qreal centerX = ui->field->width() / 2;
+    qreal centerY = ui->field->height() / 2;
+
+    // Create and add the sprite at the center position
+    Sprite *sprite = new Sprite();
+    scene->addItem(sprite);
+    sprite->setPos(centerX - sprite->boundingRect().width() / 2,
+                   centerY - sprite->boundingRect().height() / 2);
 }
 
 
