@@ -198,7 +198,7 @@ void MainWindow::on_startExplore_clicked()
 {
     QTransform transform;
     // transform.translate(0, ui->field->height());
-    transform.scale(1.25, 1.25);
+    transform.scale(17, -15);
     ui->field->setTransform(transform);
 }
 
@@ -207,7 +207,7 @@ void MainWindow::on_stopExplore_clicked()
 {
     QTransform transform;
     // transform.translate(0, ui->field->height());
-    transform.scale(0.50, 0.50);
+    transform.scale(0.50, -0.50);
     ui->field->setTransform(transform);
 }
 
