@@ -193,19 +193,21 @@ void MainWindow::on_addBall3_clicked()
 
 int xStart, xEnd, yStart, yEnd;
 
-//Adding a wall in the scene
-void MainWindow::on_addWall_clicked()
+
+void MainWindow::on_startExplore_clicked()
 {
-    xStart = ui->wallXStart->text().toInt();
-    yStart = ui->wallYStart->text().toInt();
-    xEnd = ui->wallXEnd->text().toInt();
-    yEnd = ui->wallYEnd->text().toInt();
-
-    Wall *wall = new Wall(xStart*2, yStart*2, xEnd*2, yEnd*2);
-    scene->addItem(wall);
-
-    ui->wallXStart->setText("");
-    ui->wallYStart->setText("");
-    ui->wallXEnd->setText("");
-    ui->wallYEnd->setText("");
+    QTransform transform;
+    // transform.translate(0, ui->field->height());
+    transform.scale(1.25, 1.25);
+    ui->field->setTransform(transform);
 }
+
+
+void MainWindow::on_stopExplore_clicked()
+{
+    QTransform transform;
+    // transform.translate(0, ui->field->height());
+    transform.scale(0.50, 0.50);
+    ui->field->setTransform(transform);
+}
+

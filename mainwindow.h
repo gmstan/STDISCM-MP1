@@ -37,7 +37,9 @@ private slots:
     void on_addBall1_clicked();
     void on_addBall2_clicked();
     void on_addBall3_clicked();
-    void on_addWall_clicked();
+
+    void on_startExplore_clicked();
+    void on_stopExplore_clicked();
 
 protected:
     void paintEvent(QPaintEvent *event) override;

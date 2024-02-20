@@ -49,39 +49,11 @@
      <property name="title">
       <string>Wall Configuration</string>
      </property>
-     <widget class="QLabel" name="x1Location">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>40</y>
-        <width>111</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Wall Location 1 (X1)</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="wallXStart">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>40</y>
-        <width>81</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="addWall">
+     <widget class="QPushButton" name="startExplore">
       <property name="geometry">
        <rect>
         <x>100</x>
-        <y>190</y>
+        <y>70</y>
         <width>80</width>
         <height>24</height>
        </rect>
@@ -92,16 +64,16 @@
        </font>
       </property>
       <property name="text">
-       <string>Add Wall</string>
+       <string>Start</string>
       </property>
      </widget>
-     <widget class="QLabel" name="y1Location">
+     <widget class="QPushButton" name="stopExplore">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>70</y>
-        <width>111</width>
-        <height>16</height>
+        <x>100</x>
+        <y>120</y>
+        <width>80</width>
+        <height>24</height>
        </rect>
       </property>
       <property name="font">
@@ -110,73 +82,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Wall Location 1 (Y1)</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="wallYStart">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>70</y>
-        <width>81</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="x2Location">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>110</y>
-        <width>111</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Wall Location 2 (X2)</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="y2Location">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>140</y>
-        <width>111</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Wall Location 2 (Y2)</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="wallXEnd">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>110</y>
-        <width>81</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="wallYEnd">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>140</y>
-        <width>81</width>
-        <height>20</height>
-       </rect>
+       <string>Stop</string>
       </property>
      </widget>
     </widget>
