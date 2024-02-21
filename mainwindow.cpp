@@ -6,6 +6,11 @@
 #include "gamescene.h"
 #include "sprite.h"
 
+
+#include <QGraphicsPolygonItem>
+#include <QPolygonF>
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -207,11 +212,24 @@ void MainWindow::on_startExplore_clicked()
     qreal centerX = ui->field->width() / 2;
     qreal centerY = ui->field->height() / 2;
 
-    // Create and add the sprite at the center position
-    Sprite *sprite = new Sprite();
-    scene->addItem(sprite);
-    sprite->setPos(centerX - sprite->boundingRect().width() / 2,
-                   centerY - sprite->boundingRect().height() / 2);
+    // // Create and add the sprite at the center position
+    // Sprite *sprite = new Sprite();
+    // scene->addItem(sprite);
+    // sprite->setPos(centerX - sprite->boundingRect().width() / 2,
+    //                centerY - sprite->boundingRect().height() / 2);
+
+
+    QPolygonF polygon;
+    polygon << QPointF(50, 0)
+            << QPointF(85, 15)
+            << QPointF(100, 50)
+            << QPointF(85, 85)
+            << QPointF(50, 100)
+            << QPointF(15, 85)
+            << QPointF(0, 50)
+            << QPointF(15, 15);
+    QGraphicsPolygonItem *polygonItem = new QGraphicsPolygonItem(polygon);
+    polygonItem->setPos(0, 0);
 }
 
 

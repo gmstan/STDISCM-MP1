@@ -13,17 +13,15 @@ SOURCES += \
     gamescene.cpp \
     main.cpp \
     mainwindow.cpp \
+    sprite.cpp \
     threadmanager.cpp \
     wall.cpp
-
-RESOURCES += \
-    resources.qrc \
-    resources.qrc
 
 HEADERS += \
     ball.h \
     gamescene.h \
     mainwindow.h \
+    sprite.h \
     threadmanager.h \
     wall.h
 
@@ -31,7 +29,8 @@ FORMS += \
     mainwindow.ui
 
 RESOURCES += \
-    reources.qrc
+    reources.qrc \
+    resources.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
