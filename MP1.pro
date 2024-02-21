@@ -17,6 +17,9 @@ SOURCES += \
     threadmanager.cpp \
     wall.cpp
 
+RESOURCES += \
+    resources.qrc
+
 HEADERS += \
     ball.h \
     gamescene.h \

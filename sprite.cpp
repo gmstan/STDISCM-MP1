@@ -4,7 +4,7 @@
 Sprite::Sprite()
 {
     // Load sprite image
-    m_spriteImage = QPixmap("Other files/sprite.png");
+    m_spriteImage = QPixmap("images/sprite.png");
 
     // Check if the pixmap is null
     if (m_spriteImage.isNull()) {
@@ -23,7 +23,7 @@ void Sprite::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 {
     Q_UNUSED(option)
     Q_UNUSED(widget)
-    painter->drawPixmap(0, 0, m_spriteImage);
+    painter->drawPixmap(10, 10, m_spriteImage);
 }
 
 void Sprite::setPosition(const QPointF &position)
