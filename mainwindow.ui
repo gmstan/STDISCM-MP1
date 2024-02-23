@@ -912,7 +912,7 @@
      <property name="title">
       <string>Movement Keys</string>
      </property>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="up">
       <property name="geometry">
        <rect>
         <x>70</x>
@@ -925,7 +925,7 @@
        <string>UP</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="right">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -938,7 +938,7 @@
        <string>RIGHT</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="down">
       <property name="geometry">
        <rect>
         <x>70</x>
@@ -951,7 +951,7 @@
        <string>DOWN</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="left">
       <property name="geometry">
        <rect>
         <x>10</x>

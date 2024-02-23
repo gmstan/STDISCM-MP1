@@ -10,6 +10,7 @@
 #include "gamescene.h"
 #include <QThreadPool>
 #include <QThread>
+#include <sprite.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -37,9 +38,13 @@ private slots:
     void on_addBall1_clicked();
     void on_addBall2_clicked();
     void on_addBall3_clicked();
-
     void on_startExplore_clicked();
     void on_stopExplore_clicked();
+    void moveSpriteLeft();
+    void moveSpriteRight();
+    void moveSpriteUp();
+    void moveSpriteDown();
+    void moveViewToCenter(Sprite *sprite);
 
 protected:
     void paintEvent(QPaintEvent *event) override;
