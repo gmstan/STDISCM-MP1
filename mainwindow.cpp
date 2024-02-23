@@ -217,18 +217,30 @@ void MainWindow::on_startExplore_clicked()
     // Create and add the sprite at the center position
     Sprite *sprite = new Sprite();
     scene->addItem(sprite);
-    sprite->setRotation(180);
+    // sprite->setRotation(180);
     sprite->setPos(centerScenePos - QPointF(sprite->boundingRect().width() / 2.0,
                                             sprite->boundingRect().height() / 2.0));
 }
 
-
-
 void MainWindow::on_stopExplore_clicked()
 {
+    // Remove the sprite from the scene
+    if (scene) {
+        QList<QGraphicsItem*> items = scene->items();
+        for (QGraphicsItem* item : items) {
+            Sprite* sprite = dynamic_cast<Sprite*>(item);
+            if (sprite) {
+                scene->removeItem(sprite);
+                delete sprite; // Optionally delete the sprite if you're not using it anymore
+                break; // Assuming there's only one sprite, so we can exit the loop after removing it
+            }
+        }
+    }
+
+    // Restore the original transformation
     QTransform transform;
-    // transform.translate(0, ui->field->height());
     transform.scale(0.50, -0.50);
     ui->field->setTransform(transform);
 }
+
 
