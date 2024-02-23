@@ -238,7 +238,7 @@ void MainWindow::moveSpriteLeft() {
             if (sprite) {
                 // Move the sprite left by a certain amount
                 sprite->setX(sprite->x() - 10); // Adjust the value as needed
-                moveViewToCenter(sprite);
+                // moveViewToCenter(sprite);
             }
         }
     }
@@ -252,7 +252,7 @@ void MainWindow::moveSpriteRight() {
             if (sprite) {
                 // Move the sprite right by a certain amount
                 sprite->setX(sprite->x() + 10); // Adjust the value as needed
-                moveViewToCenter(sprite);
+                // moveViewToCenter(sprite);
             }
         }
     }
@@ -266,7 +266,7 @@ void MainWindow::moveSpriteUp() {
             if (sprite) {
                 // Move the sprite up by a certain amount
                 sprite->setY(sprite->y() + 10); // Adjust the value as needed
-                moveViewToCenter(sprite);
+                // moveViewToCenter(sprite);
             }
         }
     }
@@ -281,25 +281,25 @@ void MainWindow::moveSpriteDown() {
             if (sprite) {
                 // Move the sprite down by a certain amount
                 sprite->setY(sprite->y() - 10); // Adjust the value as needed
-                moveViewToCenter(sprite);
+                // moveViewToCenter(sprite);
             }
         }
     }
 }
 
-void MainWindow::moveViewToCenter(Sprite *sprite) {
-    if (!sprite || !scene) return;
+// void MainWindow::moveViewToCenter(Sprite *sprite) {
+//     if (!sprite || !scene) return;
 
-    // Get the position of the sprite in scene coordinates
-    QPointF spritePos = sprite->scenePos();
+//     // Get the position of the sprite in scene coordinates
+//     QPointF spritePos = sprite->scenePos();
 
-    // Calculate the difference between the sprite position and the center of the view
-    qreal dx = ui->field->viewport()->width() / 2.0 - spritePos.x();
-    qreal dy = ui->field->viewport()->height() / 2.0 - spritePos.y();
+//     // Calculate the difference between the sprite position and the center of the view
+//     qreal dx = ui->field->viewport()->width() / 2.0 - spritePos.x();
+//     qreal dy = ui->field->viewport()->height() / 2.0 - spritePos.y();
 
-    // Adjust the view's center position based on the calculated difference
-    ui->field->centerOn(spritePos + QPointF(dx, dy));
-}
+//     // Adjust the view's center position based on the calculated difference
+//     ui->field->centerOn(spritePos + QPointF(dx, dy));
+// }
 
 void MainWindow::on_stopExplore_clicked()
 {
