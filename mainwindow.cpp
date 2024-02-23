@@ -203,34 +203,25 @@ int xStart, xEnd, yStart, yEnd;
 void MainWindow::on_startExplore_clicked()
 {
     QTransform transform;
-    // transform.translate(0, ui->field->height());
+    // Apply your transformation
     transform.scale(17, -15);
     ui->field->setTransform(transform);
 
+    // Calculate the center position of the transformed view
+    qreal centerX = ui->field->viewport()->width() / 2.0;
+    qreal centerY = ui->field->viewport()->height() / 2.0;
 
-    // Calculate the center position of the view
-    qreal centerX = ui->field->width() / 2;
-    qreal centerY = ui->field->height() / 2;
+    // Map the center position from viewport coordinates to scene coordinates
+    QPointF centerScenePos = ui->field->mapToScene(QPoint(centerX, centerY));
 
-    // // Create and add the sprite at the center position
-    // Sprite *sprite = new Sprite();
-    // scene->addItem(sprite);
-    // sprite->setPos(centerX - sprite->boundingRect().width() / 2,
-    //                centerY - sprite->boundingRect().height() / 2);
-
-
-    QPolygonF polygon;
-    polygon << QPointF(50, 0)
-            << QPointF(85, 15)
-            << QPointF(100, 50)
-            << QPointF(85, 85)
-            << QPointF(50, 100)
-            << QPointF(15, 85)
-            << QPointF(0, 50)
-            << QPointF(15, 15);
-    QGraphicsPolygonItem *polygonItem = new QGraphicsPolygonItem(polygon);
-    polygonItem->setPos(0, 0);
+    // Create and add the sprite at the center position
+    Sprite *sprite = new Sprite();
+    scene->addItem(sprite);
+    sprite->setRotation(180);
+    sprite->setPos(centerScenePos - QPointF(sprite->boundingRect().width() / 2.0,
+                                            sprite->boundingRect().height() / 2.0));
 }
+
 
 
 void MainWindow::on_stopExplore_clicked()

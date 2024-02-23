@@ -29,7 +29,6 @@ FORMS += \
     mainwindow.ui
 
 RESOURCES += \
-    reources.qrc \
     resources.qrc
 
 # Default rules for deployment.
