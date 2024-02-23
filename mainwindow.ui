@@ -900,6 +900,71 @@
       </widget>
      </widget>
     </widget>
+    <widget class="QGroupBox" name="movementKeys">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>140</y>
+       <width>241</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Movement Keys</string>
+     </property>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>30</y>
+        <width>93</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>UP</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>80</y>
+        <width>93</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>RIGHT</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>130</y>
+        <width>93</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>DOWN</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>93</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>LEFT</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
    <widget class="QGraphicsView" name="field">
     <property name="geometry">

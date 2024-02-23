@@ -2,9 +2,6 @@
 #include "sprite.h"
 #include <QPainter>
 
-#include <QGraphicsPolygonItem>
-#include <QPolygonF>
-
 Sprite::Sprite()
 {
     // // Load sprite image
@@ -16,18 +13,6 @@ Sprite::Sprite()
     } else {
         qDebug() << "Sprite image loaded successfully!";
     }
-
-
-    // QPolygonF polygon;
-    // polygon << QPointF(50, 0)
-    //         << QPointF(85, 15)
-    //         << QPointF(100, 50)
-    //         << QPointF(85, 85)
-    //         << QPointF(50, 100)
-    //         << QPointF(15, 85)
-    //         << QPointF(0, 50)
-    //         << QPointF(15, 15);
-
 }
 
 QRectF Sprite::boundingRect() const
@@ -47,8 +32,3 @@ void Sprite::setPosition(const QPointF &position)
     setPos(position);
 }
 
-void Sprite::setRotation(qreal angle)
-{
-    //setTransformOriginPoint(boundingRect().width() / 2, boundingRect().height() / 2);
-    setRotation(angle);
-}

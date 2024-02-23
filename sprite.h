@@ -15,7 +15,6 @@ public:
 
     // Additional methods for managing the sprite's appearance and behavior
     void setPosition(const QPointF &position);
-    void setRotation(qreal angle);
     void setScale(qreal factor);
 
 private:

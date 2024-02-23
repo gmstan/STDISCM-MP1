@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->movementKeys->hide();
 
     scene = new GameScene(this);
     ui->field->setScene(scene);
@@ -217,9 +218,11 @@ void MainWindow::on_startExplore_clicked()
     // Create and add the sprite at the center position
     Sprite *sprite = new Sprite();
     scene->addItem(sprite);
-    // sprite->setRotation(180);
     sprite->setPos(centerScenePos - QPointF(sprite->boundingRect().width() / 2.0,
                                             sprite->boundingRect().height() / 2.0));
+
+    ui->ballConfig->hide();
+    ui->movementKeys->show();
 }
 
 void MainWindow::on_stopExplore_clicked()
@@ -236,7 +239,8 @@ void MainWindow::on_stopExplore_clicked()
             }
         }
     }
-
+    ui->ballConfig->show();
+    ui->movementKeys->hide();
     // Restore the original transformation
     QTransform transform;
     transform.scale(0.50, -0.50);
