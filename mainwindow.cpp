@@ -252,7 +252,22 @@ void MainWindow::moveSpriteRight() {
             if (sprite) {
                 // Move the sprite right by a certain amount
                 sprite->setX(sprite->x() + 10); // Adjust the value as needed
-                // moveViewToCenter(sprite);
+                moveViewToCenter(sprite);
+
+
+
+                // Calculate the center position of the transformed view
+                qreal centerX = ui->field->viewport()->width() / 2.0;
+                qreal centerY = ui->field->viewport()->height() / 2.0;
+
+                // Map the center position from viewport coordinates to scene coordinates
+                QPointF centerScenePos = ui->field->mapToScene(QPoint(centerX, centerY));
+
+                // Create and add the sprite at the center position
+                Sprite *sprite = new Sprite();
+                scene->addItem(sprite);
+                sprite->setPos(centerScenePos - QPointF(sprite->boundingRect().width() / 2.0,
+                                                        sprite->boundingRect().height() / 2.0));
             }
         }
     }
@@ -266,7 +281,7 @@ void MainWindow::moveSpriteUp() {
             if (sprite) {
                 // Move the sprite up by a certain amount
                 sprite->setY(sprite->y() + 10); // Adjust the value as needed
-                // moveViewToCenter(sprite);
+                moveViewToCenter(sprite);
             }
         }
     }
@@ -287,34 +302,38 @@ void MainWindow::moveSpriteDown() {
     }
 }
 
-// void MainWindow::moveViewToCenter(Sprite *sprite) {
-//     if (!sprite || !scene) return;
+void MainWindow::moveViewToCenter(Sprite *sprite) {
+    if (!sprite || !scene) return;
 
-//     // Get the position of the sprite in scene coordinates
-//     QPointF spritePos = sprite->scenePos();
+    // Get the position of the sprite in scene coordinates
+    QPointF spritePos = sprite->scenePos();
 
-//     // Calculate the difference between the sprite position and the center of the view
-//     qreal dx = ui->field->viewport()->width() / 2.0 - spritePos.x();
-//     qreal dy = ui->field->viewport()->height() / 2.0 - spritePos.y();
+    // Get the current scale factor of the viewport
+    qreal scaleFactorX = ui->field->transform().m11(); // X scale factor
+    qreal scaleFactorY = ui->field->transform().m22(); // Y scale factor
 
-//     // Adjust the view's center position based on the calculated difference
-//     ui->field->centerOn(spritePos + QPointF(dx, dy));
-// }
+    // Calculate the difference between the sprite position and the center of the view, scaled by the current scale factor
+    qreal dx = ui->field->viewport()->width() / 2.0 - (spritePos.x() / scaleFactorX);
+    qreal dy = ui->field->viewport()->height() / 2.0 - (spritePos.y() / scaleFactorY);
+
+    // Adjust the view's center position based on the calculated difference
+    ui->field->centerOn(spritePos + QPointF(dx, dy));
+}
 
 void MainWindow::on_stopExplore_clicked()
 {
     // Remove the sprite from the scene
-    if (scene) {
-        QList<QGraphicsItem*> items = scene->items();
-        for (QGraphicsItem* item : items) {
-            Sprite* sprite = dynamic_cast<Sprite*>(item);
-            if (sprite) {
-                scene->removeItem(sprite);
-                delete sprite; // Optionally delete the sprite if you're not using it anymore
-                break; // Assuming there's only one sprite, so we can exit the loop after removing it
-            }
-        }
-    }
+    // if (scene) {
+    //     QList<QGraphicsItem*> items = scene->items();
+    //     for (QGraphicsItem* item : items) {
+    //         Sprite* sprite = dynamic_cast<Sprite*>(item);
+    //         if (sprite) {
+    //             scene->removeItem(sprite);
+    //             delete sprite; // Optionally delete the sprite if you're not using it anymore
+    //             break; // Assuming there's only one sprite, so we can exit the loop after removing it
+    //         }
+    //     }
+    // }
     ui->ballConfig->show();
     ui->movementKeys->hide();
     // Restore the original transformation

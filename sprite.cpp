@@ -5,7 +5,7 @@
 Sprite::Sprite()
 {
     // // Load sprite image
-    m_spriteImage = QPixmap(":/images/sprite2.png");
+    m_spriteImage = QPixmap(":/images/miniSprite.png");
 
     // // Check if the pixmap is null
     if (m_spriteImage.isNull()) {
