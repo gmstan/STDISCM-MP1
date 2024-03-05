@@ -297,8 +297,8 @@ void MainWindow::moveViewToCenter(Sprite *sprite) {
     qreal scaleFactorY = ui->field->transform().m22(); // Y scale factor
 
     // Calculate the difference between the sprite position and the center of the view, scaled by the current scale factor
-    qreal dx = ui->field->viewport()->width() / 2.0;/* - spritePos.x() * scaleFactorX;*/
-    qreal dy = ui->field->viewport()->height() / 2.0;/* - spritePos.y() * scaleFactorY;*/
+    qreal dx = ui->field->viewport()->width() / 2.0;
+    qreal dy = ui->field->viewport()->height() / 2.0;
 
     // Adjust the view's center position based on the calculated difference
     ui->field->centerOn(spritePos + QPointF(dx/16, dy/16));
