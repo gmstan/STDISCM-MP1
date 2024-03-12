@@ -219,11 +219,11 @@ void MainWindow::on_startExplore_clicked()
     scene->addItem(sprite);
 
     if (spriteX == -100 && spriteY == -100){
-        // sprite->setPos(-5,-20);
-        sprite->setPos(2520,-20);
+        sprite->setPos(-5,-20);
+        // sprite->setPos(2520,-20);
         // sprite->setPos(2520,-20);
 
-        spriteX = 2520;
+        spriteX = -5;
         spriteY = -20;
     }
     else{
@@ -325,7 +325,7 @@ void MainWindow::moveSpriteDown() {
                     sprite->setY(sprite->y() - 5); // Adjust the value as needed
                     moveViewToCenter(sprite);
                 }
-                qDebug() << sprite->y();                spriteY = sprite->y();
+                qDebug() << sprite->y();
                 spriteY = sprite->y();
             }
         }
