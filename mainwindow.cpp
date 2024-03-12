@@ -203,11 +203,6 @@ int xStart, xEnd, yStart, yEnd;
 
 void MainWindow::on_startExplore_clicked()
 {
-    QTransform transform;
-    // Apply your transformation
-    transform.scale(17, -15);
-    ui->field->setTransform(transform);
-
     // Calculate the center position of the transformed view
     qreal centerX = ui->field->viewport()->width() / 2.0;
     qreal centerY = ui->field->viewport()->height() / 2.0;
@@ -218,12 +213,17 @@ void MainWindow::on_startExplore_clicked()
     // Create and add the sprite at the center position
     Sprite *sprite = new Sprite();
     scene->addItem(sprite);
-    sprite->setPos(centerScenePos - QPointF(sprite->boundingRect().width() / 2.0, sprite->boundingRect().height() / 2.0));
+    sprite->setPos(-5,-20);
 
     qDebug() << centerScenePos;
     qDebug() << QPointF(sprite->boundingRect().width() / 2.0, sprite->boundingRect().height() / 2.0);
     qDebug() << sprite->x();
     qDebug() << sprite->y();
+
+    QTransform transform;
+    // Apply your transformation
+    transform.scale(17, -15);
+    ui->field->setTransform(transform);
 
     ui->ballConfig->hide();
     ui->movementKeys->show();
