@@ -29,9 +29,11 @@ MainWindow::MainWindow(QWidget *parent)
     fpsTimer->start(500);
 
     ui->field->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    ui->field->setFixedSize(1287, 727);
+    // ui->field->setFixedSize(1287, 727);
+    ui->field->setFixedSize(1317, 747);
+    // ui->field->setFixedSize(1357, 787);
     ui->field->setRenderHint(QPainter::Antialiasing, true);
-    ui->field->setSceneRect(0, 0, ui->field->width()*2, ui->field->height()*2);
+    ui->field->setSceneRect(-30, -20, ui->field->width()*2, ui->field->height()*2);
 
     QTransform transform;
     transform.translate(0, ui->field->height());
@@ -57,6 +59,8 @@ MainWindow::MainWindow(QWidget *parent)
     fpsCountTimer = new QTimer(this);
     connect(fpsCountTimer, &QTimer::timeout, scene, &GameScene::computeFPS);
     fpsCountTimer->start(20);
+
+    ui->stopExplore->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -215,14 +219,17 @@ void MainWindow::on_startExplore_clicked()
     scene->addItem(sprite);
 
     if (spriteX == -100 && spriteY == -100){
-        sprite->setPos(-5,-20);
+        // sprite->setPos(-5,-20);
+        sprite->setPos(2520,-20);
+        // sprite->setPos(2520,-20);
+
+        spriteX = 2520;
+        spriteY = -20;
     }
     else{
         sprite->setPos(spriteX,spriteY);
     }
-    // sprite->setPos(2520,1400);
-    // sprite->setPos(2520,-20);
-
+    moveViewToCenter(sprite);
 
     qDebug() << centerScenePos;
     qDebug() << QPointF(sprite->boundingRect().width() / 2.0, sprite->boundingRect().height() / 2.0);
@@ -291,7 +298,7 @@ void MainWindow::moveSpriteUp() {
         for (QGraphicsItem* item : items) {
             Sprite* sprite = dynamic_cast<Sprite*>(item);
             if (sprite) {
-                if (sprite->y() + 5 > 1400){
+                if (sprite->y() + 5 > 1390){
                     moveViewToCenter(sprite);
                 } else {
                     // Move the sprite up by a certain amount
