@@ -29,6 +29,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    int spriteX = -100;
+    int spriteY = -100;
+
 public slots:
     void updateBallPosition(Ball *ball, int x, int y, qreal dx, qreal dy);
 

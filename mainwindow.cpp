@@ -41,10 +41,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->field->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->field->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    Wall *bottomwall = new Wall(0, -1, 2571, -1);
-    Wall *topwall = new Wall(0, 1451, 2571, 1451);
-    Wall *leftwall = new Wall(-1, 0, -1, 1451);
-    Wall *rightwall = new Wall(2571, 0, 2571, 1451);
+    Wall *bottomwall = new Wall(0, -20, 2571, -20, 40);
+    Wall *topwall = new Wall(0, 1470, 2571, 1470, 40);
+    Wall *leftwall = new Wall(-30, 0, -30, 1451, 60);
+    Wall *rightwall = new Wall(2600, 0, 2600, 1451, 60);
     scene->addItem(topwall);
     scene->addItem(bottomwall);
     scene->addItem(leftwall);
@@ -213,7 +213,16 @@ void MainWindow::on_startExplore_clicked()
     // Create and add the sprite at the center position
     Sprite *sprite = new Sprite();
     scene->addItem(sprite);
-    sprite->setPos(-5,-20);
+
+    if (spriteX == -100 && spriteY == -100){
+        sprite->setPos(-5,-20);
+    }
+    else{
+        sprite->setPos(spriteX,spriteY);
+    }
+    // sprite->setPos(2520,1400);
+    // sprite->setPos(2520,-20);
+
 
     qDebug() << centerScenePos;
     qDebug() << QPointF(sprite->boundingRect().width() / 2.0, sprite->boundingRect().height() / 2.0);
@@ -241,16 +250,16 @@ void MainWindow::moveSpriteLeft() {
         QList<QGraphicsItem*> items = scene->items();
         for (QGraphicsItem* item : items) {
             Sprite* sprite = dynamic_cast<Sprite*>(item);
-            if (sprite) {
-                if (sprite->x() - 5 <= -33.7353){
-                    sprite->setX(sprite->x());
+            if (sprite) {       
+                if (sprite->x() - 5 < -35){
                     moveViewToCenter(sprite);
                 } else {
                     // Move the sprite left by a certain amount
                     sprite->setX(sprite->x() - 5); // Adjust the value as needed
                     moveViewToCenter(sprite);
                 }
-
+                qDebug() << sprite->x();
+                spriteX = sprite->x();
             }
         }
     }
@@ -262,9 +271,15 @@ void MainWindow::moveSpriteRight() {
         for (QGraphicsItem* item : items) {
             Sprite* sprite = dynamic_cast<Sprite*>(item);
             if (sprite) {
-                // Move the sprite right by a certain amount
-                sprite->setX(sprite->x() + 5); // Adjust the value as needed
-                moveViewToCenter(sprite);
+                if (sprite->x() + 5 > 2520){
+                    moveViewToCenter(sprite);
+                } else {
+                    // Move the sprite right by a certain amount
+                    sprite->setX(sprite->x() + 5); // Adjust the value as needed
+                    moveViewToCenter(sprite);
+                }
+                qDebug() << sprite->x();
+                spriteX = sprite->x();
             }
         }
     }
@@ -276,9 +291,15 @@ void MainWindow::moveSpriteUp() {
         for (QGraphicsItem* item : items) {
             Sprite* sprite = dynamic_cast<Sprite*>(item);
             if (sprite) {
-                // Move the sprite up by a certain amount
-                sprite->setY(sprite->y() + 5); // Adjust the value as needed
-                moveViewToCenter(sprite);
+                if (sprite->y() + 5 > 1400){
+                    moveViewToCenter(sprite);
+                } else {
+                    // Move the sprite up by a certain amount
+                    sprite->setY(sprite->y() + 5); // Adjust the value as needed
+                    moveViewToCenter(sprite);
+                }
+                qDebug() << sprite->y();
+                spriteY = sprite->y();
             }
         }
     }
@@ -290,14 +311,15 @@ void MainWindow::moveSpriteDown() {
         for (QGraphicsItem* item : items) {
             Sprite* sprite = dynamic_cast<Sprite*>(item);
             if (sprite) {
-                qDebug() << sprite->y();
-                if (sprite->y() - 5 < -36.8){
+                if (sprite->y() - 5 < -35){
                     sprite->setY(sprite->y());
                 } else {
                     // Move the sprite down by a certain amount
                     sprite->setY(sprite->y() - 5); // Adjust the value as needed
                     moveViewToCenter(sprite);
                 }
+                qDebug() << sprite->y();                spriteY = sprite->y();
+                spriteY = sprite->y();
             }
         }
     }
@@ -318,7 +340,7 @@ void MainWindow::moveViewToCenter(Sprite *sprite) {
     qreal dy = ui->field->viewport()->height() / 2.0;
 
     // Adjust the view's center position based on the calculated difference
-    ui->field->centerOn(spritePos + QPointF(dx/16, dy/16));
+    ui->field->centerOn(spritePos + QPointF(dx/16, dy/8));
 }
 
 void MainWindow::on_stopExplore_clicked()
@@ -344,5 +366,4 @@ void MainWindow::on_stopExplore_clicked()
     transform.scale(0.50, -0.50);
     ui->field->setTransform(transform);
 }
-
 
