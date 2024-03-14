@@ -61,6 +61,10 @@ MainWindow::MainWindow(QWidget *parent)
     fpsCountTimer->start(20);
 
     ui->stopExplore->setEnabled(false);
+    connect(ui->left, &QPushButton::clicked, this, &MainWindow::moveSpriteLeft);
+    connect(ui->right, &QPushButton::clicked, this, &MainWindow::moveSpriteRight);
+    connect(ui->up, &QPushButton::clicked, this, &MainWindow::moveSpriteUp);
+    connect(ui->down, &QPushButton::clicked, this, &MainWindow::moveSpriteDown);
 }
 
 MainWindow::~MainWindow()
@@ -245,11 +249,6 @@ void MainWindow::on_startExplore_clicked()
     ui->movementKeys->show();
     ui->startExplore->setEnabled(false);
     ui->stopExplore->setEnabled(true);
-
-    connect(ui->left, &QPushButton::clicked, this, &MainWindow::moveSpriteLeft);
-    connect(ui->right, &QPushButton::clicked, this, &MainWindow::moveSpriteRight);
-    connect(ui->up, &QPushButton::clicked, this, &MainWindow::moveSpriteUp);
-    connect(ui->down, &QPushButton::clicked, this, &MainWindow::moveSpriteDown);
 }
 
 void MainWindow::moveSpriteLeft() {
