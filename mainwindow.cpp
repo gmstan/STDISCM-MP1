@@ -256,7 +256,7 @@ void MainWindow::moveSpriteLeft() {
         QList<QGraphicsItem*> items = scene->items();
         for (QGraphicsItem* item : items) {
             Sprite* sprite = dynamic_cast<Sprite*>(item);
-            if (sprite) {       
+            if (sprite) {
                 if (sprite->x() - 5 < -35){
                     moveViewToCenter(sprite);
                 } else {
