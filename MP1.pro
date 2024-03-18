@@ -15,7 +15,6 @@ SOURCES += \
     mainwindow.cpp \
     server.cpp \
     sprite.cpp \
-    thread.cpp \
     threadmanager.cpp \
     wall.cpp
 
@@ -25,7 +24,6 @@ HEADERS += \
     mainwindow.h \
     server.h \
     sprite.h \
-    thread.h \
     threadmanager.h \
     wall.h
 

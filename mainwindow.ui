@@ -35,7 +35,7 @@
      </font>
     </property>
     <property name="title">
-     <string>Add-On Configuration</string>
+     <string>Features</string>
     </property>
     <widget class="QGroupBox" name="wallConfig">
      <property name="geometry">
@@ -47,7 +47,7 @@
       </rect>
      </property>
      <property name="title">
-      <string>Wall Configuration</string>
+      <string>Explorer Mode</string>
      </property>
      <widget class="QPushButton" name="startExplore">
       <property name="geometry">

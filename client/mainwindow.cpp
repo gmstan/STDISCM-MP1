@@ -66,23 +66,46 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->down, &QPushButton::clicked, this, &MainWindow::moveSpriteDown);
 
 
-    QTcpSocket socket;
+    // QTcpSocket socket;
     socket.connectToHost("127.0.0.1", 1234);
     if (!socket.waitForConnected()) {
         qDebug() << "Unable to connect to server.";
     }
-
-    qDebug() << "Connected to server.";
+    else{
+        qDebug() << "Connected to server.";
+    }
 
     // Send data to server
     QString message = "Hello, server!";
     socket.write(message.toUtf8());
     socket.flush();
 
+
     QObject::connect(&socket, &QTcpSocket::readyRead, [&]() {
         QByteArray data = socket.readAll();
         qDebug() << "Received: " << data;
     });
+
+
+
+    // QTcpSocket *socket = new QTcpSocket(this); // Create a pointer to QTcpSocket
+    // socket->connectToHost("127.0.0.1", 1234);
+    // if (!socket->waitForConnected()) {
+    //     qDebug() << "Unable to connect to server.";
+    // }
+    // else{
+    //     qDebug() << "Connected to server.";
+    // }
+
+    // // Send data to server
+    // QString message = "Hello, server!";
+    // socket->write(message.toUtf8());
+    // socket->flush();
+
+    // QObject::connect(socket, &QTcpSocket::readyRead, this, [=]() {
+    //     QByteArray data = socket->readAll();
+    //     qDebug() << "Received: " << data;
+    // });
 }
 
 MainWindow::~MainWindow()
@@ -152,6 +175,16 @@ void MainWindow::on_startExplore_clicked()
     ui->movementKeys->setEnabled(true);
     ui->startExplore->setEnabled(false);
     ui->stopExplore->setEnabled(true);
+
+    QString message = "START EXPLORE";
+    qDebug() << "STARTED" << message;
+    socket.write(message.toUtf8());
+    socket.flush();
+
+    QObject::connect(&socket, &QTcpSocket::readyRead, [&]() {
+        QByteArray data = socket.readAll();
+        qDebug() << "Received: " << data;
+    });
 }
 
 void MainWindow::moveSpriteLeft() {

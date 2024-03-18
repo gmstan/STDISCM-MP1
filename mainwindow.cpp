@@ -66,9 +66,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->right, &QPushButton::clicked, this, &MainWindow::moveSpriteRight);
     connect(ui->up, &QPushButton::clicked, this, &MainWindow::moveSpriteUp);
     connect(ui->down, &QPushButton::clicked, this, &MainWindow::moveSpriteDown);
-
-    Server server;
-    server.startServer();
 }
 
 MainWindow::~MainWindow()

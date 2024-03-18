@@ -3,18 +3,27 @@
 
 #include <QObject>
 #include <QTcpServer>
+#include <QTcpSocket>
 #include <QDebug>
-#include "thread.h"
 
 class Server : public QTcpServer
 {
     Q_OBJECT
 public:
     explicit Server(QObject *parent = nullptr);
+
     void startServer();
 
-protected:
-    void incomingConnection(qintptr socketDescriptor);
+signals:
+
+public slots:
+    void handleNewConnection();
+    void readData();
+    void disconnectClient();
+    void sendToAllClients(const QByteArray &data);
+
+private:
+    QList<QTcpSocket *> clientSockets; // List to store connected client sockets
 };
 
 #endif // SERVER_H

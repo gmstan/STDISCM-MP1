@@ -34,6 +34,8 @@ public:
     int spriteX = -100;
     int spriteY = -100;
 
+    QTcpSocket socket;
+
 public slots:
     void updateBallPosition(Ball *ball, int x, int y, qreal dx, qreal dy);
 
