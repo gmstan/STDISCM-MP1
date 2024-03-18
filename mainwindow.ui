@@ -47,7 +47,7 @@
       </rect>
      </property>
      <property name="title">
-      <string>Wall Configuration</string>
+      <string>Explorer Mode</string>
      </property>
      <widget class="QPushButton" name="startExplore">
       <property name="geometry">

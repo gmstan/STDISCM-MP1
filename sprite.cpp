@@ -4,10 +4,8 @@
 
 Sprite::Sprite()
 {
-    // // Load sprite image
     m_spriteImage = QPixmap(":/images/miniSprite.png");
 
-    // // Check if the pixmap is null
     if (m_spriteImage.isNull()) {
         qDebug() << "Failed to load sprite image!";
     } else {

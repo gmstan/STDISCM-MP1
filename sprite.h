@@ -13,7 +13,6 @@ public:
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
 
-    // Additional methods for managing the sprite's appearance and behavior
     void setPosition(const QPointF &position);
     void setScale(qreal factor);
 
