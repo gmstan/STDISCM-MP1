@@ -29,9 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
     fpsTimer->start(500);
 
     ui->field->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    // ui->field->setFixedSize(1287, 727);
     ui->field->setFixedSize(1317, 747);
-    // ui->field->setFixedSize(1357, 787);
     ui->field->setRenderHint(QPainter::Antialiasing, true);
     ui->field->setSceneRect(-30, -20, ui->field->width()*2, ui->field->height()*2);
 
@@ -66,6 +64,25 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->right, &QPushButton::clicked, this, &MainWindow::moveSpriteRight);
     connect(ui->up, &QPushButton::clicked, this, &MainWindow::moveSpriteUp);
     connect(ui->down, &QPushButton::clicked, this, &MainWindow::moveSpriteDown);
+
+
+    QTcpSocket socket;
+    socket.connectToHost("127.0.0.1", 1234);
+    if (!socket.waitForConnected()) {
+        qDebug() << "Unable to connect to server.";
+    }
+
+    qDebug() << "Connected to server.";
+
+    // Send data to server
+    QString message = "Hello, server!";
+    socket.write(message.toUtf8());
+    socket.flush();
+
+    QObject::connect(&socket, &QTcpSocket::readyRead, [&]() {
+        QByteArray data = socket.readAll();
+        qDebug() << "Received: " << data;
+    });
 }
 
 MainWindow::~MainWindow()

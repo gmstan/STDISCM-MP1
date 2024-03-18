@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,7 +13,9 @@ SOURCES += \
     gamescene.cpp \
     main.cpp \
     mainwindow.cpp \
+    server.cpp \
     sprite.cpp \
+    thread.cpp \
     threadmanager.cpp \
     wall.cpp
 
@@ -21,7 +23,9 @@ HEADERS += \
     ball.h \
     gamescene.h \
     mainwindow.h \
+    server.h \
     sprite.h \
+    thread.h \
     threadmanager.h \
     wall.h
 

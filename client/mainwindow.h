@@ -11,6 +11,8 @@
 #include <QThreadPool>
 #include <QThread>
 #include <sprite.h>
+#include <QtNetwork>
+#include <QTcpSocket>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
