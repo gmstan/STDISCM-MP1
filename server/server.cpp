@@ -1,6 +1,13 @@
 #include "server.h"
 
-Server::Server(QObject *parent) : QTcpServer(parent) {}
+Server::Server(QObject *parent, MainWindow *mainWindow) : QTcpServer(parent) , mainWindow(mainWindow)
+{
+    if (mainWindow == nullptr) {
+        // Handle the case where mainWindow pointer is null
+        // For example, you might throw an exception or log an error
+        throw std::invalid_argument("mainWindow pointer cannot be null");
+    }
+}
 
 void Server::startServer()
 {
@@ -11,51 +18,95 @@ void Server::startServer()
         qDebug() << "Server started on PORT 1234";
     }
 
-    connect(this, &Server::newConnection, this, &Server::handleNewConnection);
-}
-
-void Server::handleNewConnection()
-{
-    QTcpSocket *clientSocket = this->nextPendingConnection();
-    qDebug() << clientSocket->socketDescriptor() << " Connecting...";
-
-    connect(clientSocket, &QTcpSocket::readyRead, this, &Server::readData);
-    connect(clientSocket, &QTcpSocket::disconnected, this, &Server::disconnectClient);
-
-    clientSockets.append(clientSocket); // Add the client socket to the list
-}
-
-void Server::readData()
-{
-    QTcpSocket *clientSocket = qobject_cast<QTcpSocket *>(sender());
-    if (!clientSocket)
-        return;
-
-    QByteArray data = clientSocket->readAll();
-    qDebug() << clientSocket->socketDescriptor() << "Data in: " << data;
-
-    // Echo back to the client
-    clientSocket->write(data);
-
-    // Optionally, you can send data to all clients
-    // sendToAllClients(data);
-}
-
-void Server::disconnectClient()
-{
-    QTcpSocket *clientSocket = qobject_cast<QTcpSocket *>(sender());
-    if (!clientSocket)
-        return;
-
-    qDebug() << clientSocket->socketDescriptor() << " Disconnected";
-
-    clientSocket->deleteLater();
-    clientSockets.removeOne(clientSocket); // Remove the client socket from the list
-}
-
-void Server::sendToAllClients(const QByteArray &data)
-{
-    for (QTcpSocket *socket : clientSockets) {
-        socket->write(data);
+    if (!mainWindow) {
+        qDebug() << "Error: Null pointer received for mainWindow in Server::startServer()";
     }
+
+    // connect(this, &Server::newConnection, this, &Server::handleNewConnection);
 }
+
+// void Server::handleNewConnection()
+// {
+//     QTcpSocket *clientSocket = this->nextPendingConnection();
+//     qDebug() << clientSocket->socketDescriptor() << " Connecting...";
+
+//     connect(clientSocket, &QTcpSocket::readyRead, this, &Server::readData);
+//     connect(clientSocket, &QTcpSocket::disconnected, this, &Server::disconnectClient);
+
+//     clientSockets.append(clientSocket); // Add the client socket to the list
+// }
+
+// void Server::readData()
+// {
+//     QTcpSocket *clientSocket = qobject_cast<QTcpSocket *>(sender());
+//     if (!clientSocket)
+//         return;
+
+//     QByteArray data = clientSocket->readAll();
+//     qDebug() << clientSocket->socketDescriptor() << "Data in: " << data;
+
+
+//     QString newSprite = data.left(9);
+//     if (newSprite == "newSprite"){
+//         qDebug() << "NEW SPRITE SPAWNED";
+//         data.remove(0, 10);
+
+//         QString X; // Store characters until the comma
+//         QString Y; // Store characters after the comma
+//         bool commaFound = false; // Flag to track if comma is found
+
+//         qDebug() << "data:" << data;
+//         // Iterate through each character in the input string
+//         for (const QChar& ch : data) {
+//             // Check if the character is a comma
+//             if (ch == ',') {
+//                 // Set the flag to true if comma is found
+//                 commaFound = true;
+//                 continue; // Skip appending comma to the first part
+//             }
+
+//             // Append the character to the appropriate part
+//             if (!commaFound) {
+//                 X.append(ch);
+//             } else {
+//                 Y.append(ch);
+//             }
+//         }
+//         qDebug() << "X:" << X;
+//         qDebug() << "Y:" << Y;
+
+//         int intX = X.toInt();
+//         int intY = Y.toInt();
+
+//         qDebug() << "newX:" << intX;
+//         qDebug() << "newY:" << intY;
+//         mainWindow->spawnSprite(intX, intY);
+
+//     }
+
+//     // Echo back to the client
+//     clientSocket->write(data);
+
+//     // Optionally, you can send data to all clients
+//     // sendToAllClients(data);
+// }
+
+// void Server::disconnectClient()
+// {
+//     QTcpSocket *clientSocket = qobject_cast<QTcpSocket *>(sender());
+//     if (!clientSocket)
+//         return;
+
+//     qDebug() << clientSocket->socketDescriptor() << " Disconnected";
+
+//     clientSocket->deleteLater();
+//     clientSockets.removeOne(clientSocket); // Remove the client socket from the list
+// }
+
+// void Server::sendToAllClients(const QByteArray &data)
+// {
+//     for (QTcpSocket *socket : clientSockets) {
+//         socket->write(data);
+//     }
+// }
+

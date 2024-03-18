@@ -250,6 +250,7 @@ void MainWindow::on_startExplore_clicked()
     ui->movementKeys->show();
     ui->startExplore->setEnabled(false);
     ui->stopExplore->setEnabled(true);
+
 }
 
 void MainWindow::moveSpriteLeft() {
@@ -374,3 +375,22 @@ void MainWindow::on_stopExplore_clicked()
     ui->field->setTransform(transform);
 }
 
+// void MainWindow::spawnSprite(int x, int y)
+// {
+//     qDebug() << "1" << x;
+//     qDebug() << "2" << y;
+
+//     if (!scene) {
+//         qDebug() << "Scene is null or invalid.";
+//         return;
+//     }
+
+
+//     Sprite *sprite = new Sprite();
+//     scene->addItem(sprite);
+//     qDebug() << "ADDED";
+
+//     sprite->setPos(x,y);
+//     qDebug() << "POSX" << sprite->x();
+//     qDebug() << "POSY" << sprite->y();
+// }

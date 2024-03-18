@@ -176,8 +176,13 @@ void MainWindow::on_startExplore_clicked()
     ui->startExplore->setEnabled(false);
     ui->stopExplore->setEnabled(true);
 
-    QString message = "START EXPLORE";
-    qDebug() << "STARTED" << message;
+
+    QString message = "newSprite,";
+    message.append(QString::number(spriteX));
+    message.append(",");
+    message.append(QString::number(spriteY));
+
+    qDebug() << message;
     socket.write(message.toUtf8());
     socket.flush();
 
@@ -185,6 +190,8 @@ void MainWindow::on_startExplore_clicked()
         QByteArray data = socket.readAll();
         qDebug() << "Received: " << data;
     });
+
+
 }
 
 void MainWindow::moveSpriteLeft() {
