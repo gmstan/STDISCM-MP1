@@ -46,6 +46,14 @@ void Server::readData()
     if (!clientSocket)
         return;
 
+    int index = clientSockets.indexOf(clientSocket);
+    if (index == -1) {
+        qDebug() << "Error: Socket not found in the clientSockets array";
+        return;
+    }
+    index+=1;
+    // qDebug() << "INDEX" << index;
+
     QByteArray data = clientSocket->readAll();
     qDebug() << clientSocket->socketDescriptor() << "Data in: " << data;
 
@@ -85,10 +93,11 @@ void Server::readData()
         qDebug() << "newX:" << intX;
         qDebug() << "newY:" << intY;
 
+        QString indexString = QString::number(index);
+        QByteArray msg = indexString.toUtf8();
+        clientSocket->write(msg);
 
-        clientSocket->write("2");
-
-        mainWindow->spawnSprite(2, intX, intY);
+        mainWindow->spawnSprite(index, intX, intY);
     }
 
     else if (signal == "movSprite"){

@@ -140,33 +140,12 @@ void MainWindow::on_startExplore_clicked()
 {
     qreal centerX = ui->field->viewport()->width() / 2.0;
     qreal centerY = ui->field->viewport()->height() / 2.0;
-
-    // Map the center position from viewport coordinates to scene coordinates
     QPointF centerScenePos = ui->field->mapToScene(QPoint(centerX, centerY));
-
-    // // Create and add the sprite at the center position
-    // Sprite *sprite = new Sprite();
-    // scene->addItem(sprite);
 
     if (spriteX == -100 && spriteY == -100){
         spriteX = 30;
         spriteY = 20;
     }
-    // sprite->setPos(spriteX,spriteY);
-    // moveViewToCenter(sprite);
-
-    // qDebug() << sprite->x();
-    // qDebug() << sprite->y();
-
-    // QTransform transform;
-    // // Apply your transformation
-    // transform.scale(17, -15);
-    // ui->field->setTransform(transform);
-
-    // ui->movementKeys->setEnabled(true);
-    // ui->startExplore->setEnabled(false);
-    // ui->stopExplore->setEnabled(true);
-
 
     QString message = "newSprite,";
     message.append(QString::number(spriteX));
@@ -176,8 +155,6 @@ void MainWindow::on_startExplore_clicked()
     qDebug() << message;
     socket.write(message.toUtf8());
     socket.flush();
-
-    // QObject::connect(&socket, &QTcpSocket::readyRead, [&]() {
 
     if (!socket.waitForReadyRead(3000)) { // Wait for 3 seconds
         qDebug() << "Timeout: No data received from the socket.";
@@ -206,9 +183,6 @@ void MainWindow::on_startExplore_clicked()
     ui->movementKeys->setEnabled(true);
     ui->startExplore->setEnabled(false);
     ui->stopExplore->setEnabled(true);
-
-    // });
-
 }
 
 void MainWindow::moveSpriteLeft() {
