@@ -103,11 +103,14 @@ void MainWindow::on_addBall_clicked()
 
     Ball *ball = new Ball(startPosX, startPosY, speed, angle);
     scene->addItem(ball);
+
     connect(threadManager, &ThreadManager::ballPositionChanged, this, &MainWindow::updateBallPosition);
 
     QVector<Ball*> balls;
     balls.append(ball);
+
     emit ballCreated(balls);
+    qDebug() << "TEST3";
 
     ui->xInput->setText("");
     ui->yInput->setText("");
@@ -220,24 +223,20 @@ void MainWindow::on_startExplore_clicked()
     QPointF centerScenePos = ui->field->mapToScene(QPoint(centerX, centerY));
 
     // Create and add the sprite at the center position
-    Sprite *sprite = new Sprite();
+    Sprite *sprite = new Sprite(0);
     scene->addItem(sprite);
 
     if (spriteX == -100 && spriteY == -100){
-        sprite->setPos(-5,-20);
-        // sprite->setPos(2520,-20);
-        // sprite->setPos(2520,-20);
+        // sprite->setPos(30,20);
+        // sprite->setPos(2520,20);
+        // sprite->setPos(2520,1420);
 
-        spriteX = -5;
-        spriteY = -20;
+        spriteX = 30;
+        spriteY = 20;
     }
-    else{
-        sprite->setPos(spriteX,spriteY);
-    }
+    sprite->setPos(spriteX,spriteY);
     moveViewToCenter(sprite);
 
-    qDebug() << centerScenePos;
-    qDebug() << QPointF(sprite->boundingRect().width() / 2.0, sprite->boundingRect().height() / 2.0);
     qDebug() << sprite->x();
     qDebug() << sprite->y();
 
@@ -259,7 +258,7 @@ void MainWindow::moveSpriteLeft() {
         for (QGraphicsItem* item : items) {
             Sprite* sprite = dynamic_cast<Sprite*>(item);
             if (sprite) {
-                if (sprite->x() - 5 < -35){
+                if (sprite->x() - 5 < 0){
                     moveViewToCenter(sprite);
                 } else {
                     // Move the sprite left by a certain amount
@@ -279,7 +278,7 @@ void MainWindow::moveSpriteRight() {
         for (QGraphicsItem* item : items) {
             Sprite* sprite = dynamic_cast<Sprite*>(item);
             if (sprite) {
-                if (sprite->x() + 5 > 2520){
+                if (sprite->x() + 5 > 2550){
                     moveViewToCenter(sprite);
                 } else {
                     // Move the sprite right by a certain amount
@@ -299,7 +298,7 @@ void MainWindow::moveSpriteUp() {
         for (QGraphicsItem* item : items) {
             Sprite* sprite = dynamic_cast<Sprite*>(item);
             if (sprite) {
-                if (sprite->y() + 5 > 1390){
+                if (sprite->y() + 5 > 1430){
                     moveViewToCenter(sprite);
                 } else {
                     // Move the sprite up by a certain amount
@@ -319,7 +318,7 @@ void MainWindow::moveSpriteDown() {
         for (QGraphicsItem* item : items) {
             Sprite* sprite = dynamic_cast<Sprite*>(item);
             if (sprite) {
-                if (sprite->y() - 5 < -35){
+                if (sprite->y() - 5 < 0){
                     sprite->setY(sprite->y());
                 } else {
                     // Move the sprite down by a certain amount
@@ -348,7 +347,7 @@ void MainWindow::moveViewToCenter(Sprite *sprite) {
     qreal dy = ui->field->viewport()->height() / 2.0;
 
     // Adjust the view's center position based on the calculated difference
-    ui->field->centerOn(spritePos + QPointF(dx/16, dy/8));
+    ui->field->centerOn(spritePos + QPointF(10,6));
 }
 
 void MainWindow::on_stopExplore_clicked()
@@ -375,22 +374,51 @@ void MainWindow::on_stopExplore_clicked()
     ui->field->setTransform(transform);
 }
 
-// void MainWindow::spawnSprite(int x, int y)
-// {
-//     qDebug() << "1" << x;
-//     qDebug() << "2" << y;
+void MainWindow::spawnSprite(int id, int x, int y)
+{
+    qDebug() << "1" << x;
+    qDebug() << "2" << y;
 
-//     if (!scene) {
-//         qDebug() << "Scene is null or invalid.";
-//         return;
-//     }
+    Sprite *sprite = new Sprite(id);
+    scene->addItem(sprite);
+    qDebug() << "ADDED";
 
+    sprite->setPos(x,y);
+    qDebug() << "POSX" << sprite->x();
+    qDebug() << "POSY" << sprite->y();
+}
 
-//     Sprite *sprite = new Sprite();
-//     scene->addItem(sprite);
-//     qDebug() << "ADDED";
+void MainWindow::moveSprite(int x, int y)
+{
+    qDebug() << "1" << x;
+    qDebug() << "2" << y;
 
-//     sprite->setPos(x,y);
-//     qDebug() << "POSX" << sprite->x();
-//     qDebug() << "POSY" << sprite->y();
-// }
+    if (scene) {
+        QList<QGraphicsItem*> items = scene->items();
+        for (QGraphicsItem* item : items) {
+            Sprite* sprite = dynamic_cast<Sprite*>(item);
+            if (sprite) {
+                sprite->setPos(x,y);
+
+                qDebug() << "MOVED";
+                qDebug() << "POSX" << sprite->x();
+                qDebug() << "POSY" << sprite->y();
+            }
+        }
+    }
+}
+
+void MainWindow::delSprite()
+{
+    if (scene) {
+        QList<QGraphicsItem*> items = scene->items();
+        for (QGraphicsItem* item : items) {
+            Sprite* sprite = dynamic_cast<Sprite*>(item);
+            if (sprite) {
+                scene->removeItem(sprite);
+                delete sprite; // Optionally delete the sprite if you're not using it anymore
+                break; // Assuming there's only one sprite, so we can exit the loop after removing it
+            }
+        }
+    }
+}

@@ -34,15 +34,18 @@ void ThreadManager::connectBall(QVector<Ball*> balls){
             currThread->start();
             currSize=0;
         }
+        // qDebug() << "TM1";
 
-        balls[i]->moveToThread(currThread);
-        ++currSize;
+        // balls[i]->moveToThread(currThread);
+        // ++currSize;
 
+        // qDebug() << "TM2";
         connect(ballTimer, &QTimer::timeout, balls[i], [=](){
             QMutexLocker locker(&mutex);
             balls[i]->moveBall(1);
         });
         connect(balls[i], &Ball::finish, this, &ThreadManager::updatePos);
+        // qDebug() << "TM3";
     }
 }
 

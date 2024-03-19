@@ -19,10 +19,10 @@ public:
 signals:
 
 public slots:
-    // void handleNewConnection();
-    // void readData();
-    // void disconnectClient();
-    // void sendToAllClients(const QByteArray &data);
+    void handleNewConnection();
+    void readData();
+    void disconnectClient();
+    void sendToAllClients(const QByteArray &data);
 
 private:
     QList<QTcpSocket *> clientSockets; // List to store connected client sockets

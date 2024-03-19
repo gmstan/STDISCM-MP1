@@ -32,7 +32,10 @@ public:
     int spriteX = -100;
     int spriteY = -100;
 
-    // void spawnSprite(int x, int y);
+    void spawnSprite(int id, int x, int y);
+    void moveSprite(int x, int y);
+    void delSprite();
+
 public slots:
     void updateBallPosition(Ball *ball, int x, int y, qreal dx, qreal dy);
 

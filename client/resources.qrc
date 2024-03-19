@@ -2,5 +2,8 @@
     <qresource prefix="/images">
         <file>sprite.png</file>
         <file>miniSprite.png</file>
+        <file>player1.png</file>
+        <file>player2.png</file>
+        <file>player3.png</file>
     </qresource>
 </RCC>

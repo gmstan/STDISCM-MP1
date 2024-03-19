@@ -36,6 +36,7 @@ public:
 
     QTcpSocket socket;
 
+    void updateSprite(int x, int y);
 public slots:
     void updateBallPosition(Ball *ball, int x, int y, qreal dx, qreal dy);
 

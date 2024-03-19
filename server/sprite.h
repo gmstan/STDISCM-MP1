@@ -1,24 +1,22 @@
-// Sprite.h
 #ifndef SPRITE_H
 #define SPRITE_H
 
-#include <QGraphicsObject>
+#include <QGraphicsItem>
+#include <QPixmap>
+#include <QDebug>
 
-class Sprite : public QGraphicsObject
+class Sprite : public QGraphicsItem
 {
-    Q_OBJECT
 public:
-    explicit Sprite();
+    explicit Sprite(int id, QGraphicsItem *parent = nullptr);
 
     QRectF boundingRect() const override;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
-
-    // Additional methods for managing the sprite's appearance and behavior
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     void setPosition(const QPointF &position);
-    void setScale(qreal factor);
 
 private:
     QPixmap m_spriteImage;
+    int m_id;
 };
 
 #endif // SPRITE_H

@@ -81,10 +81,10 @@ MainWindow::MainWindow(QWidget *parent)
     socket.flush();
 
 
-    QObject::connect(&socket, &QTcpSocket::readyRead, [&]() {
-        QByteArray data = socket.readAll();
-        qDebug() << "Received: " << data;
-    });
+    // QObject::connect(&socket, &QTcpSocket::readyRead, [&]() {
+    //     QByteArray data = socket.readAll();
+    //     qDebug() << "Received: " << data;
+    // });
 
 
 
@@ -138,32 +138,63 @@ int xStart, xEnd, yStart, yEnd;
 
 void MainWindow::on_startExplore_clicked()
 {
-    // Calculate the center position of the transformed view
     qreal centerX = ui->field->viewport()->width() / 2.0;
     qreal centerY = ui->field->viewport()->height() / 2.0;
 
     // Map the center position from viewport coordinates to scene coordinates
     QPointF centerScenePos = ui->field->mapToScene(QPoint(centerX, centerY));
 
-    // Create and add the sprite at the center position
-    Sprite *sprite = new Sprite();
-    scene->addItem(sprite);
+    // // Create and add the sprite at the center position
+    // Sprite *sprite = new Sprite();
+    // scene->addItem(sprite);
 
     if (spriteX == -100 && spriteY == -100){
-        sprite->setPos(-5,-20);
-        // sprite->setPos(2520,-20);
-        // sprite->setPos(2520,-20);
+        spriteX = 30;
+        spriteY = 20;
+    }
+    // sprite->setPos(spriteX,spriteY);
+    // moveViewToCenter(sprite);
 
-        spriteX = -5;
-        spriteY = -20;
+    // qDebug() << sprite->x();
+    // qDebug() << sprite->y();
+
+    // QTransform transform;
+    // // Apply your transformation
+    // transform.scale(17, -15);
+    // ui->field->setTransform(transform);
+
+    // ui->movementKeys->setEnabled(true);
+    // ui->startExplore->setEnabled(false);
+    // ui->stopExplore->setEnabled(true);
+
+
+    QString message = "newSprite,";
+    message.append(QString::number(spriteX));
+    message.append(",");
+    message.append(QString::number(spriteY));
+
+    qDebug() << message;
+    socket.write(message.toUtf8());
+    socket.flush();
+
+    // QObject::connect(&socket, &QTcpSocket::readyRead, [&]() {
+
+    if (!socket.waitForReadyRead(3000)) { // Wait for 3 seconds
+        qDebug() << "Timeout: No data received from the socket.";
+        return; // Return or handle the error accordingly
     }
-    else{
-        sprite->setPos(spriteX,spriteY);
-    }
+
+    QByteArray data = socket.readAll();
+    qDebug() << "data: " << data;
+    int id = data.toInt();
+    qDebug() << "id: " << id;
+
+    Sprite *sprite = new Sprite(id);
+    scene->addItem(sprite);
+
+    sprite->setPos(spriteX,spriteY);
     moveViewToCenter(sprite);
 
-    qDebug() << centerScenePos;
-    qDebug() << QPointF(sprite->boundingRect().width() / 2.0, sprite->boundingRect().height() / 2.0);
     qDebug() << sprite->x();
     qDebug() << sprite->y();
 
@@ -176,21 +207,7 @@ void MainWindow::on_startExplore_clicked()
     ui->startExplore->setEnabled(false);
     ui->stopExplore->setEnabled(true);
 
-
-    QString message = "newSprite,";
-    message.append(QString::number(spriteX));
-    message.append(",");
-    message.append(QString::number(spriteY));
-
-    qDebug() << message;
-    socket.write(message.toUtf8());
-    socket.flush();
-
-    QObject::connect(&socket, &QTcpSocket::readyRead, [&]() {
-        QByteArray data = socket.readAll();
-        qDebug() << "Received: " << data;
-    });
-
+    // });
 
 }
 
@@ -200,7 +217,7 @@ void MainWindow::moveSpriteLeft() {
         for (QGraphicsItem* item : items) {
             Sprite* sprite = dynamic_cast<Sprite*>(item);
             if (sprite) {
-                if (sprite->x() - 5 < -35){
+                if (sprite->x() - 5 < 0){
                     moveViewToCenter(sprite);
                 } else {
                     // Move the sprite left by a certain amount
@@ -209,6 +226,8 @@ void MainWindow::moveSpriteLeft() {
                 }
                 qDebug() << sprite->x();
                 spriteX = sprite->x();
+
+                updateSprite(sprite->x(), sprite->y());
             }
         }
     }
@@ -220,7 +239,7 @@ void MainWindow::moveSpriteRight() {
         for (QGraphicsItem* item : items) {
             Sprite* sprite = dynamic_cast<Sprite*>(item);
             if (sprite) {
-                if (sprite->x() + 5 > 2520){
+                if (sprite->x() + 5 > 2550){
                     moveViewToCenter(sprite);
                 } else {
                     // Move the sprite right by a certain amount
@@ -229,6 +248,8 @@ void MainWindow::moveSpriteRight() {
                 }
                 qDebug() << sprite->x();
                 spriteX = sprite->x();
+
+                updateSprite(sprite->x(), sprite->y());
             }
         }
     }
@@ -240,7 +261,7 @@ void MainWindow::moveSpriteUp() {
         for (QGraphicsItem* item : items) {
             Sprite* sprite = dynamic_cast<Sprite*>(item);
             if (sprite) {
-                if (sprite->y() + 5 > 1390){
+                if (sprite->y() + 5 > 1430){
                     moveViewToCenter(sprite);
                 } else {
                     // Move the sprite up by a certain amount
@@ -249,6 +270,8 @@ void MainWindow::moveSpriteUp() {
                 }
                 qDebug() << sprite->y();
                 spriteY = sprite->y();
+
+                updateSprite(sprite->x(), sprite->y());
             }
         }
     }
@@ -260,7 +283,7 @@ void MainWindow::moveSpriteDown() {
         for (QGraphicsItem* item : items) {
             Sprite* sprite = dynamic_cast<Sprite*>(item);
             if (sprite) {
-                if (sprite->y() - 5 < -35){
+                if (sprite->y() - 5 < 0){
                     sprite->setY(sprite->y());
                 } else {
                     // Move the sprite down by a certain amount
@@ -269,6 +292,8 @@ void MainWindow::moveSpriteDown() {
                 }
                 qDebug() << sprite->y();
                 spriteY = sprite->y();
+
+                updateSprite(sprite->x(), sprite->y());
             }
         }
     }
@@ -289,12 +314,23 @@ void MainWindow::moveViewToCenter(Sprite *sprite) {
     qreal dy = ui->field->viewport()->height() / 2.0;
 
     // Adjust the view's center position based on the calculated difference
-    ui->field->centerOn(spritePos + QPointF(dx/16, dy/8));
+    ui->field->centerOn(spritePos + QPointF(10,6));
 }
+
+void MainWindow::updateSprite(int x, int y){
+    QString message = "movSprite,";
+    message.append(QString::number(x));
+    message.append(",");
+    message.append(QString::number(y));
+
+    qDebug() << message;
+    socket.write(message.toUtf8());
+    socket.flush();
+}
+
 
 void MainWindow::on_stopExplore_clicked()
 {
-    // Remove the sprite from the scene
     if (scene) {
         QList<QGraphicsItem*> items = scene->items();
         for (QGraphicsItem* item : items) {
@@ -309,6 +345,12 @@ void MainWindow::on_stopExplore_clicked()
     ui->movementKeys->setEnabled(false);
     ui->startExplore->setEnabled(true);
     ui->stopExplore->setEnabled(false);
+
+    QString message = "delSprite,";
+    qDebug() << message;
+    socket.write(message.toUtf8());
+    socket.flush();
+
     // Restore the original transformation
     QTransform transform;
     transform.scale(0.50, -0.50);
