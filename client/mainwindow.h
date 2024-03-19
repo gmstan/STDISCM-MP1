@@ -33,6 +33,7 @@ public:
 
     int spriteX = -100;
     int spriteY = -100;
+    int spriteID;
 
     QTcpSocket socket;
 

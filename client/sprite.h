@@ -13,10 +13,11 @@ public:
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     void setPosition(const QPointF &position);
+    int getID() const;
 
 private:
     QPixmap m_spriteImage;
-    int m_id;
+    int spriteID;
 };
 
 #endif // SPRITE_H

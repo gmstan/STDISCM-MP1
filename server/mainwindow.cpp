@@ -368,7 +368,7 @@ void MainWindow::on_stopExplore_clicked()
     ui->movementKeys->hide();
     ui->startExplore->setEnabled(true);
     ui->stopExplore->setEnabled(false);
-    // Restore the original transformation
+\
     QTransform transform;
     transform.scale(0.50, -0.50);
     ui->field->setTransform(transform);
@@ -376,33 +376,48 @@ void MainWindow::on_stopExplore_clicked()
 
 void MainWindow::spawnSprite(int id, int x, int y)
 {
-    qDebug() << "1" << x;
-    qDebug() << "2" << y;
+    // qDebug() << "1" << x;
+    // qDebug() << "2" << y;
 
     Sprite *sprite = new Sprite(id);
     scene->addItem(sprite);
-    qDebug() << "ADDED";
+    // qDebug() << "ADDED";
 
     sprite->setPos(x,y);
-    qDebug() << "POSX" << sprite->x();
-    qDebug() << "POSY" << sprite->y();
+    // qDebug() << "POSX" << sprite->x();
+    // qDebug() << "POSY" << sprite->y();
 }
+
+// void MainWindow::moveSprite(int id, int x, int y)
+// {
+//     qDebug() << "TESTING" << id << x << y;
+//     if (scene) {
+//         QList<QGraphicsItem*> items = scene->items();
+//         for (QGraphicsItem* item : items) {
+//             Sprite* sprite = dynamic_cast<Sprite*>(item);
+//             qDebug() << "ID" << sprite->getID();
+//             // if (sprite->getID() == id) {
+//             if (sprite) {
+//                 qDebug() << "moving ID" << sprite->getID();
+//                 sprite->setPos(x,y);
+
+//                 qDebug() << "MOVED";
+//             }
+//         }
+//     }
+// }
 
 void MainWindow::moveSprite(int x, int y)
 {
-    qDebug() << "1" << x;
-    qDebug() << "2" << y;
-
     if (scene) {
         QList<QGraphicsItem*> items = scene->items();
         for (QGraphicsItem* item : items) {
             Sprite* sprite = dynamic_cast<Sprite*>(item);
+            // qDebug() << "DEBUG TESTING ID" << sprite->getID();
             if (sprite) {
+                // qDebug() << "moving ID" << sprite->getID();
                 sprite->setPos(x,y);
-
                 qDebug() << "MOVED";
-                qDebug() << "POSX" << sprite->x();
-                qDebug() << "POSY" << sprite->y();
             }
         }
     }

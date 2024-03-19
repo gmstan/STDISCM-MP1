@@ -163,10 +163,10 @@ void MainWindow::on_startExplore_clicked()
 
     QByteArray data = socket.readAll();
     qDebug() << "data: " << data;
-    int id = data.toInt();
-    qDebug() << "id: " << id;
+    spriteID = data.toInt();
+    qDebug() << "id: " << spriteID;
 
-    Sprite *sprite = new Sprite(id);
+    Sprite *sprite = new Sprite(spriteID);
     scene->addItem(sprite);
 
     sprite->setPos(spriteX,spriteY);
@@ -292,7 +292,9 @@ void MainWindow::moveViewToCenter(Sprite *sprite) {
 }
 
 void MainWindow::updateSprite(int x, int y){
-    QString message = "movSprite,";
+    QString message = "movSprite";
+    message.append(QString::number(spriteID));
+    message.append(",");
     message.append(QString::number(x));
     message.append(",");
     message.append(QString::number(y));
@@ -301,7 +303,6 @@ void MainWindow::updateSprite(int x, int y){
     socket.write(message.toUtf8());
     socket.flush();
 }
-
 
 void MainWindow::on_stopExplore_clicked()
 {

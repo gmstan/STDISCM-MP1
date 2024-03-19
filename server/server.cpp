@@ -61,6 +61,7 @@ void Server::readData()
     QString signal = data.left(9);
     if (signal == "newSprite"){
         qDebug() << "NEW SPRITE SPAWNED";
+
         data.remove(0, 10);
 
         QString X; // Store characters until the comma
@@ -102,23 +103,22 @@ void Server::readData()
 
     else if (signal == "movSprite"){
         qDebug() << "MOVED SPRITE";
-        data.remove(0, 10);
+        data.remove(0, 9);
 
-        QString X; // Store characters until the comma
-        QString Y; // Store characters after the comma
-        bool commaFound = false; // Flag to track if comma is found
+        QString spriteID = data.left(1);
+        qDebug() << "SPRITE_ID:" << spriteID;
+        data.remove(0, 2);
 
+        QString X;
+        QString Y;
+        bool commaFound = false;
         qDebug() << "data:" << data;
-        // Iterate through each character in the input string
-        for (const QChar& ch : data) {
-            // Check if the character is a comma
-            if (ch == ',') {
-                // Set the flag to true if comma is found
-                commaFound = true;
-                continue; // Skip appending comma to the first part
-            }
 
-            // Append the character to the appropriate part
+        for (const QChar& ch : data) {
+            if (ch == ',') {
+                commaFound = true;
+                continue;
+            }
             if (!commaFound) {
                 X.append(ch);
             } else {
@@ -133,6 +133,9 @@ void Server::readData()
 
         qDebug() << "newX:" << intX;
         qDebug() << "newY:" << intY;
+
+        int intID = spriteID.toInt();
+        // mainWindow->moveSprite(intID, intX, intY);
         mainWindow->moveSprite(intX, intY);
     }
 
@@ -158,7 +161,7 @@ void Server::disconnectClient()
     qDebug() << clientSocket->socketDescriptor() << " Disconnected";
 
     clientSocket->deleteLater();
-    clientSockets.removeOne(clientSocket); // Remove the client socket from the list
+    // clientSockets.removeOne(clientSocket); // Remove the client socket from the list
 }
 
 void Server::sendToAllClients(const QByteArray &data)
